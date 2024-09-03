@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     
     
@@ -16,16 +16,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private lazy var layout = UICollectionViewFlowLayout()
 
     private lazy var collectionView: UICollectionView = {
-//        let collection = UICollectionView(frame: self.view.bounds)
-        let collection = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-//        layout.itemSize = CGSize(width: collectionView.frame.width, height: 204)
-        collection.backgroundColor = .white
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.backgroundColor = .systemRed
+        collection.contentInsetAdjustmentBehavior = .never
         collection.dataSource = self
         collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         
-        // Регистрация ячеек
-//        collection.register(ImageButtonCell.self, forCellWithReuseIdentifier: ImageButtonCell.identifier)
         
         return collection
     }()
@@ -38,7 +35,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Регистрация ячеек
         collectionView.register(ImageButtonCell.self, forCellWithReuseIdentifier: ImageButtonCell.identifier)
         collectionView.register(TextHeaderCell.self, forCellWithReuseIdentifier: TextHeaderCell.identifier)
-
+        
         setupSubviews()
         setupConstraints()
     }
@@ -51,8 +48,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func setupConstraints() {
         
-//        let safeAreaGuide = view.safeAreaLayoutGuide
-        
+        // Устанавливаем констрейнты для CollectionView
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -68,6 +64,9 @@ extension ViewController {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
+    
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
                case 0:
@@ -94,10 +93,12 @@ extension ViewController {
                 }
     }
     
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             switch indexPath.section {
             case 0:
-                return CGSize(width: collectionView.bounds.width, height: 204)
+                return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width * 0.544)
             case 1:
                 return CGSize(width: collectionView.bounds.width / 2 - 10, height: 100)
             default:

@@ -17,7 +17,8 @@ class ImageButtonCell: UICollectionViewCell {
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Mask group")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -30,10 +31,12 @@ class ImageButtonCell: UICollectionViewCell {
         button.layer.masksToBounds = true
         
         // Добавляем крестик
-        let image = UIImage(systemName: "xmark")?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
-        button.tintColor = .darkGray // цвет крестика
+        button.tintColor = .gray // цвет крестика
+    
         button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+//        button.imageEdgeInsets = UIEdgeInsets(top: 9.6, left: 9.6, bottom: 9.6, right: 9.6)
         button.setContentHuggingPriority(.required, for: .horizontal)
         button.setContentHuggingPriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -62,13 +65,15 @@ class ImageButtonCell: UICollectionViewCell {
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: 0.544),
             
+//            closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 63), // смещаем от верхней границы
+//            closeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            closeButton.widthAnchor.constraint(equalToConstant: 28),
+            closeButton.heightAnchor.constraint(equalToConstant: 28),
             closeButton.topAnchor.constraint(equalTo: image.topAnchor, constant: 63),
             closeButton.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 327)
-//            closeButton.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -20),
-//            closeButton.bottomAnchor.constraint(equalTo: image.bottomAnchor, constant: -113)
+            //            closeButton.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -20),
+            //            closeButton.bottomAnchor.constraint(equalTo: image.bottomAnchor, constant: -113)
             
         ])
     }

@@ -9,6 +9,7 @@ import UIKit
 
 // Ячейка для изображения и кнопки вверху екрана
 
+@available(iOS 15.0, *)
 class ImageButtonCell: UICollectionViewCell {
  static let identifier = "ImageButtonCell"
     
@@ -24,22 +25,30 @@ class ImageButtonCell: UICollectionViewCell {
     }()
     
     private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
+        
+        let configGrayColor = UIImage.SymbolConfiguration(hierarchicalColor: .gray) // цвет крестика
+        let configWeight = UIImage.SymbolConfiguration(weight: .bold)
+        let configGrayAndBold = configGrayColor.applying(configWeight)
+        let configSmall = UIImage.SymbolConfiguration(scale: .small)
+        let configCrayBoldSmall = configGrayAndBold.applying(configSmall)
+        
+        var buttonConfiguration = UIButton.Configuration.filled()
+        // Добавляем крестик
+        buttonConfiguration.image = UIImage(systemName: "xmark", withConfiguration: configCrayBoldSmall)
+ 
+        buttonConfiguration.baseBackgroundColor = UIColor(named: "CloseButtonColor")
+
+        buttonConfiguration.contentInsets = NSDirectionalEdgeInsets(top: 9 , leading: 9, bottom: 9, trailing: 9)
+       
+        let button = UIButton(configuration: buttonConfiguration)
+
         button.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
-        button.backgroundColor = UIColor(named: "CloseButtonColor")
         button.layer.cornerRadius = button.frame.size.width / 2
         button.layer.masksToBounds = true
-        
-        // Добавляем крестик
-        let image = UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(image, for: .normal)
-        button.tintColor = .gray // цвет крестика
-    
-        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
-//        button.imageEdgeInsets = UIEdgeInsets(top: 9.6, left: 9.6, bottom: 9.6, right: 9.6)
         button.setContentHuggingPriority(.required, for: .horizontal)
         button.setContentHuggingPriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     

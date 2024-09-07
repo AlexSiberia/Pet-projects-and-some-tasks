@@ -100,7 +100,7 @@ extension ViewController {
             case 0:
                 return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width * 0.544)
             case 1:
-                return CGSize(width: collectionView.bounds.width / 2 - 10, height: 100)
+                return CGSize(width: collectionView.bounds.width, height: 98)
             default:
                 return CGSize.zero
             }

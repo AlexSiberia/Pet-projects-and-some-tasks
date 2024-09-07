@@ -13,14 +13,40 @@ class TextHeaderCell: UICollectionViewCell {
     
     // MARK: - Subviews
     
-    let titleFrame: UILabel = {
+    private lazy var textStack: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .white
+        stack.axis = .vertical
+        stack.spacing = 8
+        stack.alignment = .fill
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+//        stack.setContentHuggingPriority(.required, for: .horizontal)
+//        stack.setContentHuggingPriority(.required, for: .vertical)
+        stack.contentMode = .scaleAspectFill
+        
+        return stack
+    }()
+    
+    private lazy var titleFrame: UILabel = {
         
         // Создаем UILabel
         let label = UILabel()
         
         // Устанавливаем текст для label
-        label.text = "Salmon Credit line"
+        let textForHeader: String = "Salmon Credit line"
+        
+        // Настраиваем атрибуты текста
+        let atributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name:"ArchivoBlack-Regular", size: 28.0) ?? "",
+            .kern: 0.38
+        ]
+        let attributedText: NSAttributedString = NSAttributedString(string: textForHeader, attributes: atributes)
+        label.attributedText = attributedText
+        
+        // Настраиваем выравнивание
         label.textAlignment = .left
+        label.numberOfLines = 0
         
         // Отключаем автогенерируемые констрейты
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,15 +64,32 @@ class TextHeaderCell: UICollectionViewCell {
         label.layer.shadowOpacity = 0.25
         label.layer.shadowRadius = 4
         
-        // Устанавливаем непрозрачность (opacity)
-        label.alpha = 0
-        
         return label
     }()
     
     
-    let subHeader: UILabel = {
+    private lazy var subHeader: UILabel = {
         let label = UILabel()
+        
+        // Устанавливаем текст для label
+        let textForSubHeader: String = "Pay freely for any purchases with QR Ph"
+        
+        // Настраиваем атрибуты текста
+        let atributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 17, weight: .regular),
+            .kern: 0
+        ]
+        let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
+        label.attributedText = attributedText
+        
+        // Настраиваем выравнивание
+        label.textAlignment = .left
+        
+        // Устанавливаем background color
+        label.backgroundColor = .white
+        
+        // Отключаем автогенерируемые констрейты
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -55,13 +98,19 @@ class TextHeaderCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(titleFrame)
-        contentView.addSubview(subHeader)
-        setupConstraints()
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSubviews() {
+        contentView.addSubview(textStack)
+        textStack.addSubview(titleFrame)
+        textStack.addSubview(subHeader)
+        
+        setupConstraints()
     }
     
     // MARK: Constraints
@@ -69,15 +118,33 @@ class TextHeaderCell: UICollectionViewCell {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-//            // Констрейты для позиции label в родительском view
-//            titleFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-//            titleFrame.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-//            titleFrame.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-//            titleFrame.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 50),
-//            
-//            // Устанавливаем размеры (ширина - fill, высота - hug)
+            
+            // Констрейты для позиции textStack в родительском view
+            textStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            textStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            textStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            textStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            // Констрейты для позиции titleFrame label в родительском view
+            titleFrame.leadingAnchor.constraint(equalTo: textStack.leadingAnchor, constant: 20),
+            titleFrame.trailingAnchor.constraint(equalTo: textStack.trailingAnchor, constant: -20),
+            titleFrame.topAnchor.constraint(equalTo: textStack.topAnchor, constant: 12),
+            titleFrame.bottomAnchor.constraint(equalTo: textStack.bottomAnchor, constant: -50),
+            titleFrame.heightAnchor.constraint(equalToConstant: 36),
+            titleFrame.widthAnchor.constraint(equalToConstant: 335),
+            
+            // Устанавливаем размеры (ширина - fill, высота - hug)
 //            titleFrame.widthAnchor.constraint(equalToConstant: 335),
 //            titleFrame.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)
+            
+            // Констрейты для позиции subHeader label в родительском view
+            subHeader.leadingAnchor.constraint(equalTo: textStack.leadingAnchor, constant: 20),
+            subHeader.trailingAnchor.constraint(equalTo: textStack.trailingAnchor, constant: -20),
+            subHeader.topAnchor.constraint(equalTo: textStack.topAnchor, constant: 56),
+            subHeader.bottomAnchor.constraint(equalTo: textStack.bottomAnchor, constant: -20),
+            subHeader.heightAnchor.constraint(equalToConstant: 22),
+            subHeader.widthAnchor.constraint(equalToConstant: 335)
+            
         ])
     }
 }

@@ -26,6 +26,7 @@ class ImageButtonCell: UICollectionViewCell {
     
     private lazy var closeButton: UIButton = {
         
+        // Конфигурация SFSymbol
         let configGrayColor = UIImage.SymbolConfiguration(hierarchicalColor: .gray) // цвет крестика
         let configWeight = UIImage.SymbolConfiguration(weight: .bold)
         let configGrayAndBold = configGrayColor.applying(configWeight)
@@ -33,15 +34,15 @@ class ImageButtonCell: UICollectionViewCell {
         let configCrayBoldSmall = configGrayAndBold.applying(configSmall)
         
         var buttonConfiguration = UIButton.Configuration.filled()
-        // Добавляем крестик
+        
+        // Добавляем крестик и применяем конфигурацию SF Symbol для крестика
         buttonConfiguration.image = UIImage(systemName: "xmark", withConfiguration: configCrayBoldSmall)
- 
         buttonConfiguration.baseBackgroundColor = UIColor(named: "CloseButtonColor")
-
         buttonConfiguration.contentInsets = NSDirectionalEdgeInsets(top: 9 , leading: 9, bottom: 9, trailing: 9)
        
+        // Создаем саму кнопку
         let button = UIButton(configuration: buttonConfiguration)
-
+        // Настраиваем кнопку
         button.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
         button.layer.cornerRadius = button.frame.size.width / 2
         button.layer.masksToBounds = true
@@ -56,13 +57,17 @@ class ImageButtonCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(image)
-        contentView.addSubview(closeButton)
-        setupConstraints()
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSubviews() {
+        contentView.addSubview(image)
+        contentView.addSubview(closeButton)
+        setupConstraints()
     }
     
     // MARK: Constraints
@@ -75,11 +80,9 @@ class ImageButtonCell: UICollectionViewCell {
             image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-//            closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 63), // смещаем от верхней границы
-//            closeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             closeButton.widthAnchor.constraint(equalToConstant: 28),
             closeButton.heightAnchor.constraint(equalToConstant: 28),
-            closeButton.topAnchor.constraint(equalTo: image.topAnchor, constant: 63),
+            closeButton.topAnchor.constraint(equalTo: image.topAnchor, constant: 63), // смещаем от верхней границы
             closeButton.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 327)
             //            closeButton.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -20),
             //            closeButton.bottomAnchor.constraint(equalTo: image.bottomAnchor, constant: -113)

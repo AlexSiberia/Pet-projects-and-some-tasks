@@ -22,7 +22,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collection.dataSource = self
         collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false
-        
+//        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         
         return collection
     }()
@@ -33,8 +34,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         
         // Регистрация ячеек
-        collectionView.register(ImageButtonCell.self, forCellWithReuseIdentifier: ImageButtonCell.identifier)
-        collectionView.register(TextHeaderCell.self, forCellWithReuseIdentifier: TextHeaderCell.identifier)
+        collectionView.register(
+            ImageButtonCell.self,
+            forCellWithReuseIdentifier: ImageButtonCell.identifier
+        )
+        collectionView.register(
+            TextHeaderCell.self,
+            forCellWithReuseIdentifier: TextHeaderCell.identifier
+        )
+        collectionView.register(
+            TransactionCell.self,
+            forCellWithReuseIdentifier: TransactionCell.identifier
+        )
         
         setupSubviews()
         setupConstraints()
@@ -62,47 +73,67 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 extension ViewController {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-               case 0:
-                   return 1 // Количество ячеек типа ImageButtontCell
-               case 1:
-                   return 1 // Количество ячеек типа TextHeaderCell
-               default:
-                   return 0
-               }
+        case 0:
+            return 1 // Количество ячеек типа ImageButtontCell
+        case 1:
+            return 1 // Количество ячеек типа TextHeaderCell
+        case 2:
+            return TransactionCell().sectionData.count //Количество ячеек типа TransactionCellCreditLimit
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
-                case 0:
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageButtonCell.identifier, for: indexPath) as! ImageButtonCell
-                   
-                    return cell
-                case 1:
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextHeaderCell.identifier, for: indexPath) as! TextHeaderCell
-                  
-                    return cell
-                default:
-                    fatalError("Unexpected section")
-                }
+        case 0:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ImageButtonCell.identifier,
+                for: indexPath
+            ) as! ImageButtonCell
+            
+            return cell
+        case 1:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TextHeaderCell.identifier,
+                for: indexPath
+            ) as! TextHeaderCell
+            
+            return cell
+        case 2:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TransactionCell.identifier,
+                for: indexPath
+            ) as! TransactionCell
+            // Передача данных из массива для каждой ячейки второй секции
+            let dataForCell = TransactionCell().sectionData[indexPath.item]
+            cell.configureCell(dataCell: dataForCell)
+            
+            return cell
+        default:
+            fatalError("Unexpected section")
+        }
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            switch indexPath.section {
-            case 0:
-                return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width * 0.544)
-            case 1:
-                return CGSize(width: collectionView.bounds.width, height: 98)
-            default:
-                return CGSize.zero
-            }
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width * 0.544)
+        case 1:
+            return CGSize(width: collectionView.bounds.width, height: 98)
+        case 2:
+            return CGSize(width: collectionView.bounds.width, height: 86)
+        default:
+            return CGSize.zero
         }
+    }
 }

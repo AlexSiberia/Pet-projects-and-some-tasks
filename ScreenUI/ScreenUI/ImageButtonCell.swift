@@ -11,7 +11,9 @@ import UIKit
 
 @available(iOS 15.0, *)
 class ImageButtonCell: UICollectionViewCell {
- static let identifier = "ImageButtonCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     // MARK: - Subviews
     
@@ -79,6 +81,7 @@ class ImageButtonCell: UICollectionViewCell {
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
             
             closeButton.widthAnchor.constraint(equalToConstant: 28),
             closeButton.heightAnchor.constraint(equalToConstant: 28),

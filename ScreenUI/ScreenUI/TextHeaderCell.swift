@@ -9,7 +9,9 @@ import UIKit
 
 // Ячейка для текста
 class TextHeaderCell: UICollectionViewCell {
-    static let identifier = "TextHeaderCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     // MARK: - Subviews
     
@@ -131,7 +133,7 @@ class TextHeaderCell: UICollectionViewCell {
             titleFrame.topAnchor.constraint(equalTo: textStack.topAnchor, constant: 12),
             titleFrame.bottomAnchor.constraint(equalTo: textStack.bottomAnchor, constant: -50),
             titleFrame.heightAnchor.constraint(equalToConstant: 36),
-            titleFrame.widthAnchor.constraint(equalToConstant: 335),
+//            titleFrame.widthAnchor.constraint(equalToConstant: 335),
             
             // Устанавливаем размеры (ширина - fill, высота - hug)
 //            titleFrame.widthAnchor.constraint(equalToConstant: 335),
@@ -143,7 +145,7 @@ class TextHeaderCell: UICollectionViewCell {
             subHeader.topAnchor.constraint(equalTo: textStack.topAnchor, constant: 56),
             subHeader.bottomAnchor.constraint(equalTo: textStack.bottomAnchor, constant: -20),
             subHeader.heightAnchor.constraint(equalToConstant: 22),
-            subHeader.widthAnchor.constraint(equalToConstant: 335)
+//            subHeader.widthAnchor.constraint(equalToConstant: 335)
             
         ])
     }

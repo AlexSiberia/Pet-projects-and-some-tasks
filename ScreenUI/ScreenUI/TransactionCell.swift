@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class TransactionCell: UICollectionViewCell {
     static var identifier: String {
         return String(describing: self)
@@ -27,6 +28,7 @@ class TransactionCell: UICollectionViewCell {
     ]
     // MARK: - Subviews
     
+    // Созданм горизонтальный стэк для размещения в нем изображения и вертикального стэка с текстом
     private lazy var cellStack: UIStackView = {
         let stack = UIStackView()
         stack.backgroundColor = .white
@@ -40,6 +42,7 @@ class TransactionCell: UICollectionViewCell {
         return stack
     }()
     
+    // Создаем вертикальный стэк для размещения в нем двух лэйблов с текстом
     private lazy var textStack: UIStackView = {
         let stack = UIStackView()
         stack.backgroundColor = .white

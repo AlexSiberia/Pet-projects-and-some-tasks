@@ -17,7 +17,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.backgroundColor = .systemRed
+//        collection.backgroundColor = .systemRed
         collection.contentInsetAdjustmentBehavior = .never
         collection.dataSource = self
         collection.delegate = self
@@ -46,6 +46,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             TransactionCell.self,
             forCellWithReuseIdentifier: TransactionCell.identifier
         )
+        collectionView.register(
+            InfoCell.self,
+            forCellWithReuseIdentifier: InfoCell.identifier
+        )
+        collectionView.register(
+            ContinueButtonCell.self,
+            forCellWithReuseIdentifier: ContinueButtonCell.identifier
+        )
         
         setupSubviews()
         setupConstraints()
@@ -73,7 +81,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 extension ViewController {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 5
     }
     
     // MARK: - UICollectionViewDataSource
@@ -86,6 +94,10 @@ extension ViewController {
             return 1 // Количество ячеек типа TextHeaderCell
         case 2:
             return TransactionCell().sectionData.count //Количество ячеек типа TransactionCellCreditLimit
+        case 3:
+            return 1 // Количество ячеек типа InfoCell
+        case 4:
+            return 1 // Количество ячеек типа ContinueButtonCell
         default:
             return 0
         }
@@ -117,6 +129,20 @@ extension ViewController {
             cell.configureCell(dataCell: dataForCell)
             
             return cell
+        case 3:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: InfoCell.identifier,
+                for: indexPath
+            ) as! InfoCell
+            
+            return cell
+        case 4:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ContinueButtonCell.identifier,
+                for: indexPath
+            ) as! ContinueButtonCell
+            
+            return cell
         default:
             fatalError("Unexpected section")
         }
@@ -132,6 +158,10 @@ extension ViewController {
             return CGSize(width: collectionView.bounds.width, height: 98)
         case 2:
             return CGSize(width: collectionView.bounds.width, height: 86)
+        case 3:
+            return CGSize(width: collectionView.bounds.width, height: 56)
+        case 4:
+            return CGSize(width: collectionView.bounds.width, height: 88)
         default:
             return CGSize.zero
         }

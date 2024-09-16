@@ -7,10 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomButtonCellDelegate {
    
-    
-    
     // MARK: - Subviews
     
     private lazy var layout = UICollectionViewFlowLayout()
@@ -55,6 +53,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             forCellWithReuseIdentifier: ContinueButtonCell.identifier
         )
         
+//        collectionView.dataSource = self
+//        collectionView.delegate = self
+        
         setupSubviews()
         setupConstraints()
     }
@@ -78,7 +79,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
 }
 
-extension ViewController {
+extension HomeViewController {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 5
@@ -142,6 +143,8 @@ extension ViewController {
                 for: indexPath
             ) as! ContinueButtonCell
             
+            cell.delegate = self
+            
             return cell
         default:
             fatalError("Unexpected section")
@@ -166,4 +169,16 @@ extension ViewController {
             return CGSize.zero
         }
     }
+    
+    // MARK: - CustomButtonCellDelegate
+       
+       func didTapButton(in cell: ContinueButtonCell) {
+           // Переход на второй экран при нажатии на кнопку
+           let pinView = PinCodeViewController()
+           
+           // Переход с использованием push
+           navigationController?.pushViewController(pinView, animated: true)
+//           pinView.modalPresentationStyle = .fullScreen
+//           present(pinView, animated: true)
+       }
 }

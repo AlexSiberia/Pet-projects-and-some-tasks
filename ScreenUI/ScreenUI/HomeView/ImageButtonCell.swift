@@ -9,7 +9,7 @@ import UIKit
 
 // Ячейка для изображения и кнопки вверху екрана
 
-@available(iOS 15.0, *)
+//@available(iOS 15.0, *)
 class ImageButtonCell: UICollectionViewCell {
     static var identifier: String {
         return String(describing: self)

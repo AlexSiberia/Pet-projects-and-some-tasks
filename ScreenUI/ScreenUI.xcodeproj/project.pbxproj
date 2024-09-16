@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		3935F7932C8317F40052857B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7922C8317F40052857B /* AppDelegate.swift */; };
 		3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7942C8317F40052857B /* SceneDelegate.swift */; };
-		3935F7972C8317F40052857B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7962C8317F40052857B /* ViewController.swift */; };
+		3935F7972C8317F40052857B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7962C8317F40052857B /* HomeViewController.swift */; };
 		3935F79C2C8317F50052857B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3935F79B2C8317F50052857B /* Assets.xcassets */; };
 		3935F79F2C8317F50052857B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 3935F79E2C8317F50052857B /* Base */; };
 		394CB9692C8C93EA00081B38 /* ArchivoBlack-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394CB9682C8C93EA00081B38 /* ArchivoBlack-Regular.ttf */; };
 		394CB96C2C8D8F1B00081B38 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB96B2C8D8F1B00081B38 /* TransactionCell.swift */; };
 		394CB96E2C8FEB5F00081B38 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB96D2C8FEB5F00081B38 /* InfoCell.swift */; };
 		394CB9702C90052C00081B38 /* ContinueButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB96F2C90052C00081B38 /* ContinueButtonCell.swift */; };
+		394CB9722C95D6A300081B38 /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9712C95D6A300081B38 /* PinCodeViewController.swift */; };
+		394CB9762C95F91F00081B38 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9752C95F91F00081B38 /* TitleCell.swift */; };
+		394CB9782C97037F00081B38 /* NavigationBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9772C97037F00081B38 /* NavigationBarCell.swift */; };
+		394CB97A2C97F23B00081B38 /* SubTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9792C97F23B00081B38 /* SubTitleCell.swift */; };
 		39B750EE2C8492AC00442F55 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */; };
 		39B750F02C8603DE00442F55 /* TextHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */; };
 /* End PBXBuildFile section */
@@ -24,7 +28,7 @@
 		3935F78F2C8317F40052857B /* ScreenUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3935F7922C8317F40052857B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3935F7942C8317F40052857B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3935F7962C8317F40052857B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3935F7962C8317F40052857B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3935F79B2C8317F50052857B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3935F79E2C8317F50052857B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3935F7A02C8317F50052857B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +36,10 @@
 		394CB96B2C8D8F1B00081B38 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		394CB96D2C8FEB5F00081B38 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		394CB96F2C90052C00081B38 /* ContinueButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonCell.swift; sourceTree = "<group>"; };
+		394CB9712C95D6A300081B38 /* PinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
+		394CB9752C95F91F00081B38 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		394CB9772C97037F00081B38 /* NavigationBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCell.swift; sourceTree = "<group>"; };
+		394CB9792C97F23B00081B38 /* SubTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleCell.swift; sourceTree = "<group>"; };
 		39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
 		39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,12 +74,8 @@
 		3935F7912C8317F40052857B /* ScreenUI */ = {
 			isa = PBXGroup;
 			children = (
-				3935F7962C8317F40052857B /* ViewController.swift */,
-				39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */,
-				39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */,
-				394CB96B2C8D8F1B00081B38 /* TransactionCell.swift */,
-				394CB96D2C8FEB5F00081B38 /* InfoCell.swift */,
-				394CB96F2C90052C00081B38 /* ContinueButtonCell.swift */,
+				394CB9732C95D6B800081B38 /* HomeView */,
+				394CB9742C95D6D800081B38 /* PinCodeView */,
 				39B750EC2C8491FD00442F55 /* Supporting */,
 				3935F7A02C8317F50052857B /* Info.plist */,
 			);
@@ -84,6 +88,30 @@
 				394CB9682C8C93EA00081B38 /* ArchivoBlack-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		394CB9732C95D6B800081B38 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				3935F7962C8317F40052857B /* HomeViewController.swift */,
+				39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */,
+				39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */,
+				394CB96B2C8D8F1B00081B38 /* TransactionCell.swift */,
+				394CB96D2C8FEB5F00081B38 /* InfoCell.swift */,
+				394CB96F2C90052C00081B38 /* ContinueButtonCell.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		394CB9742C95D6D800081B38 /* PinCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				394CB9712C95D6A300081B38 /* PinCodeViewController.swift */,
+				394CB9772C97037F00081B38 /* NavigationBarCell.swift */,
+				394CB9752C95F91F00081B38 /* TitleCell.swift */,
+				394CB9792C97F23B00081B38 /* SubTitleCell.swift */,
+			);
+			path = PinCodeView;
 			sourceTree = "<group>";
 		};
 		39B750EC2C8491FD00442F55 /* Supporting */ = {
@@ -170,11 +198,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				394CB96C2C8D8F1B00081B38 /* TransactionCell.swift in Sources */,
+				394CB97A2C97F23B00081B38 /* SubTitleCell.swift in Sources */,
 				39B750F02C8603DE00442F55 /* TextHeaderCell.swift in Sources */,
-				3935F7972C8317F40052857B /* ViewController.swift in Sources */,
+				394CB9762C95F91F00081B38 /* TitleCell.swift in Sources */,
+				3935F7972C8317F40052857B /* HomeViewController.swift in Sources */,
 				3935F7932C8317F40052857B /* AppDelegate.swift in Sources */,
+				394CB9782C97037F00081B38 /* NavigationBarCell.swift in Sources */,
 				394CB9702C90052C00081B38 /* ContinueButtonCell.swift in Sources */,
 				3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */,
+				394CB9722C95D6A300081B38 /* PinCodeViewController.swift in Sources */,
 				39B750EE2C8492AC00442F55 /* ImageButtonCell.swift in Sources */,
 				394CB96E2C8FEB5F00081B38 /* InfoCell.swift in Sources */,
 			);

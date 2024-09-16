@@ -7,36 +7,31 @@
 
 import UIKit
 
+protocol CustomButtonCellDelegate: AnyObject {
+    func didTapButton(in cell: ContinueButtonCell)
+}
+
 // Ячейка для текста
 class ContinueButtonCell: UICollectionViewCell {
     static var identifier: String {
         return String(describing: self)
-        
     }
+    
+    weak var delegate: CustomButtonCellDelegate?
     
     // MARK: - Subviews
     
     private lazy var continueButton: UIButton = {
-        
-        // Конфигурация SFSymbol
-//        let configGrayColor = UIImage.SymbolConfiguration(hierarchicalColor: .gray) // цвет крестика
-//        let configWeight = UIImage.SymbolConfiguration(weight: .bold)
-//        let configGrayAndBold = configGrayColor.applying(configWeight)
-//        let configSmall = UIImage.SymbolConfiguration(scale: .small)
-//        let configCrayBoldSmall = configGrayAndBold.applying(configSmall)
-//        
-//        var buttonConfiguration = UIButton.Configuration.filled()
-//        
-//        // Добавляем крестик и применяем конфигурацию SF Symbol для крестика
-//        buttonConfiguration.image = UIImage(systemName: "xmark", withConfiguration: configCrayBoldSmall)
-//        buttonConfiguration.baseBackgroundColor = UIColor(named: "CloseButtonColor")
-//        buttonConfiguration.contentInsets = NSDirectionalEdgeInsets(top: 9 , leading: 9, bottom: 9, trailing: 9)
        
         // Создаем саму кнопку
         let button = UIButton()
         
         // Устанавливаем текст для label
         let textForSubHeader: String = "Continue"
+        
+        // Настраиваем действие по нажатию кнопки - lобавляем обработчики событий
+        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
         // Настраиваем атрибуты текста
         let atributes: [NSAttributedString.Key: Any] = [
@@ -91,6 +86,23 @@ class ContinueButtonCell: UICollectionViewCell {
             continueButton.heightAnchor.constraint(equalToConstant: 56)
             
         ])
+    }
+    
+    // MARK: Actions
+    
+    // Кнопка становится прозрачной при нажатии
+    @objc private func buttonTouchDown() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0.5
+        }
+    }
+    
+    // Восстанавливаем непрозрачность при отпускании или отмене нажатия и обрабатываем событие
+    @objc private func buttonTouchUp() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1.0
+        }
+        delegate?.didTapButton(in: self)
     }
 }
 

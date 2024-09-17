@@ -9,7 +9,6 @@ import UIKit
 
 // Ячейка для изображения и кнопки вверху екрана
 
-//@available(iOS 15.0, *)
 class ImageButtonCell: UICollectionViewCell {
     static var identifier: String {
         return String(describing: self)
@@ -85,11 +84,9 @@ class ImageButtonCell: UICollectionViewCell {
             
             closeButton.widthAnchor.constraint(equalToConstant: 28),
             closeButton.heightAnchor.constraint(equalToConstant: 28),
-            closeButton.topAnchor.constraint(equalTo: image.topAnchor, constant: 63), // смещаем от верхней границы
-            closeButton.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 327)
-            //            closeButton.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -20),
-            //            closeButton.bottomAnchor.constraint(equalTo: image.bottomAnchor, constant: -113)
-            
+            closeButton.topAnchor.constraint(equalTo: image.topAnchor, constant: 63),
+//            closeButton.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 327)
+            closeButton.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -20),
         ])
     }
     

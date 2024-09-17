@@ -20,6 +20,7 @@
 		394CB9762C95F91F00081B38 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9752C95F91F00081B38 /* TitleCell.swift */; };
 		394CB9782C97037F00081B38 /* NavigationBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9772C97037F00081B38 /* NavigationBarCell.swift */; };
 		394CB97A2C97F23B00081B38 /* SubTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB9792C97F23B00081B38 /* SubTitleCell.swift */; };
+		394CB97C2C984B9800081B38 /* PinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394CB97B2C984B9800081B38 /* PinCell.swift */; };
 		39B750EE2C8492AC00442F55 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */; };
 		39B750F02C8603DE00442F55 /* TextHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		394CB9752C95F91F00081B38 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		394CB9772C97037F00081B38 /* NavigationBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCell.swift; sourceTree = "<group>"; };
 		394CB9792C97F23B00081B38 /* SubTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleCell.swift; sourceTree = "<group>"; };
+		394CB97B2C984B9800081B38 /* PinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCell.swift; sourceTree = "<group>"; };
 		39B750ED2C8492AC00442F55 /* ImageButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
 		39B750EF2C8603DE00442F55 /* TextHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 				394CB9772C97037F00081B38 /* NavigationBarCell.swift */,
 				394CB9752C95F91F00081B38 /* TitleCell.swift */,
 				394CB9792C97F23B00081B38 /* SubTitleCell.swift */,
+				394CB97B2C984B9800081B38 /* PinCell.swift */,
 			);
 			path = PinCodeView;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				394CB9702C90052C00081B38 /* ContinueButtonCell.swift in Sources */,
 				3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */,
 				394CB9722C95D6A300081B38 /* PinCodeViewController.swift in Sources */,
+				394CB97C2C984B9800081B38 /* PinCell.swift in Sources */,
 				39B750EE2C8492AC00442F55 /* ImageButtonCell.swift in Sources */,
 				394CB96E2C8FEB5F00081B38 /* InfoCell.swift in Sources */,
 			);
@@ -358,8 +362,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,8 +391,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -8,33 +8,45 @@
 import UIKit
 
 class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomButtonGoBackCellDelegate {
-
+    
     // MARK: - Subviews
     
     private lazy var layout = UICollectionViewFlowLayout()
-
+    
     private lazy var collectionView: UICollectionView = {
+        layout.scrollDirection = .vertical
+        // layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .systemRed
         collection.contentInsetAdjustmentBehavior = .never
         collection.dataSource = self
         collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false
-//        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
         
         return collection
     }()
     
- 
-
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Настроим navBar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.backgroundColor = .yellow
+        // Скрытие кнопки назад
+        self.navigationItem.hidesBackButton = true
+        // navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close)
         
+        registerCells()
+        setupSubviews()
+        setupConstraints()  
+    }
+    
+    func registerCells() {
         // Регистрация ячеек
         collectionView.register(
             NavigationBarCell.self,
@@ -48,33 +60,18 @@ class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICol
             SubTitleCell.self,
             forCellWithReuseIdentifier: SubTitleCell.identifier
         )
-//        collectionView.register(
-//            InfoCell.self,
-//            forCellWithReuseIdentifier: InfoCell.identifier
-//        )
-//        collectionView.register(
-//            ContinueButtonCell.self,
-//            forCellWithReuseIdentifier: ContinueButtonCell.identifier
-//        )
-        
-        setupSubviews()
-        setupConstraints()
-        
-        // Настроим navBar
-        navigationController?.navigationBar.backgroundColor = .yellow
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close)
-        // Скрытие кнопки назад
-        self.navigationItem.hidesBackButton = true
-        
+        collectionView.register(
+            PinCell.self,
+            forCellWithReuseIdentifier: PinCell.identifier
+        )
     }
     
-
     
     
     private func setupSubviews() {
         view.addSubview(collectionView)
     }
-
+    
     // MARK: Constraints
     
     private func setupConstraints() {
@@ -93,7 +90,7 @@ class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICol
 extension PinCodeViewController {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     // MARK: - UICollectionViewDataSource
@@ -107,7 +104,7 @@ extension PinCodeViewController {
         case 2:
             return 1 //Количество ячеек типа SubTitleCell
         case 3:
-            return 1 // Количество ячеек типа InfoCell
+            return 4 // Количество ячеек типа PinCell
         case 4:
             return 1 // Количество ячеек типа ContinueButtonCell
         default:
@@ -141,9 +138,12 @@ extension PinCodeViewController {
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: InfoCell.identifier,
+                withReuseIdentifier: PinCell.identifier,
                 for: indexPath
-            ) as! InfoCell
+            ) as! PinCell
+            // Передача данных из массива для каждой ячейки второй секции
+            let dataForCell = PinCell().sectionData[indexPath.item]
+            cell.configureCell(dataCell: dataForCell)
             
             return cell
         case 4:
@@ -169,13 +169,36 @@ extension PinCodeViewController {
         case 2:
             return CGSize(width: collectionView.bounds.width, height: 58)
         case 3:
-            return CGSize(width: collectionView.bounds.width, height: 56)
+            // Рассчитываем ширину ячейки, чтобы вмещалось 4 ячейки с учетом отступов
+//            let numberOfItemsInRow: CGFloat = 4
+//            let spacing: CGFloat = 12 // Отступы между ячейками
+//            let totalSpacing = (numberOfItemsInRow - 1) * spacing
+//            let availableWidth = collectionView.bounds.width - totalSpacing
+//            let itemWidth = availableWidth / numberOfItemsInRow
+            
+            return CGSize(width: 40, height: 40)
         case 4:
             return CGSize(width: collectionView.bounds.width, height: 88)
         default:
             return CGSize.zero
         }
     }
+//    // Отступы вокруг секции
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Отступы от краев секции
+//    }
+    
+    // Минимальное расстояние между ячейками по горизонтали
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 12 // Расстояние между элементами в строке
+    }
+    
+    // Минимальное расстояние между строками
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 10 // Расстояние между строками
+//        
+//        
+//    }
     
     // MARK: - CustomButtonCellDelegate
     

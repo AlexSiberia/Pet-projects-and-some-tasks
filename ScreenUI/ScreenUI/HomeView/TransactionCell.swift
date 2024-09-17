@@ -12,20 +12,21 @@ class TransactionCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    // Создаем сруктуру данных для ячейки
-    struct TransactionCellData {
-        let image: UIImage
-        let titleText: String
-        let subTitleText: String
-    }
+//    // Создаем сруктуру данных для ячейки
+//    struct TransactionCellData {
+//        let image: UIImage
+//        let titleText: String
+//        let subTitleText: String
+//    }
+//    
+//    // Создаем массив данных для секции с ячейками TransactionCell
+//    let sectionData: [TransactionCellData] = [
+//        TransactionCellData(image: UIImage(named: "CellAvatar1")!, titleText: "Credit limit ₱10,000.00", subTitleText: "Revolving amount is ready to use over and over"), 
+//        TransactionCellData(image: UIImage(named: "CellAvatar2")!, titleText: "Free forever", subTitleText: "No annual fee. If you don’t use it, you don’t pay"),
+//        TransactionCellData(image: UIImage(named: "CellAvatar3")!, titleText: "30 days interest-free period", subTitleText: "Pay the minimum payment in a month"),
+//        TransactionCellData(image: UIImage(named: "CellAvatar4")!, titleText: "Easy to use", subTitleText: "Send money, pay bills, make daily purchases via QR Ph with ease")
+//    ]
     
-    // Создаем массив данных для секции с ячейками TransactionCell
-    let sectionData: [TransactionCellData] = [
-        TransactionCellData(image: UIImage(named: "CellAvatar1")!, titleText: "Credit limit ₱10,000.00", subTitleText: "Revolving amount is ready to use over and over"), 
-        TransactionCellData(image: UIImage(named: "CellAvatar2")!, titleText: "Free forever", subTitleText: "No annual fee. If you don’t use it, you don’t pay"),
-        TransactionCellData(image: UIImage(named: "CellAvatar3")!, titleText: "30 days interest-free period", subTitleText: "Pay the minimum payment in a month"),
-        TransactionCellData(image: UIImage(named: "CellAvatar4")!, titleText: "Easy to use", subTitleText: "Send money, pay bills, make daily purchases via QR Ph with ease")
-    ]
     // MARK: - Subviews
     
     // Созданм горизонтальный стэк для размещения в нем изображения и вертикального стэка с текстом
@@ -62,15 +63,15 @@ class TransactionCell: UICollectionViewCell {
         let label = UILabel()
         
         // Устанавливаем текст для label
-        let textForHeader: String = "Credit limit ₱10,000.00"
-        
-        // Настраиваем атрибуты текста
-        let atributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
-            .kern: 0.38
-        ]
-        let attributedText: NSAttributedString = NSAttributedString(string: textForHeader, attributes: atributes)
-        label.attributedText = attributedText
+//        let textForHeader: String = "Credit limit ₱10,000.00"
+//        
+//        // Настраиваем атрибуты текста
+//        let atributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+//            .kern: 0.38
+//        ]
+//        let attributedText: NSAttributedString = NSAttributedString(string: textForHeader, attributes: atributes)
+//        label.attributedText = attributedText
         
         // Настраиваем выравнивание
         label.textAlignment = .left
@@ -90,15 +91,15 @@ class TransactionCell: UICollectionViewCell {
         let label = UILabel()
         
         // Устанавливаем текст для label
-        let textForSubHeader: String = "Revolving amount is ready to use over and over"
-        
-        // Настраиваем атрибуты текста
-        let atributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 13, weight: .regular),
-            .kern: 0
-        ]
-        let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
-        label.attributedText = attributedText
+//        let textForSubHeader: String = "Revolving amount is ready to use over and over"
+//        
+//        // Настраиваем атрибуты текста
+//        let atributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 13, weight: .regular),
+//            .kern: 0
+//        ]
+//        let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
+//        label.attributedText = attributedText
         
         // Настраиваем выравнивание
         label.textAlignment = .left
@@ -159,7 +160,6 @@ class TransactionCell: UICollectionViewCell {
             cellImage.topAnchor.constraint(equalTo: cellStack.topAnchor, constant: 12),
             cellImage.leadingAnchor.constraint(equalTo: cellStack.leadingAnchor, constant: 20),
             cellImage.bottomAnchor.constraint(equalTo: cellStack.bottomAnchor, constant: -26),
-//            image.trailingAnchor.constraint(equalTo: cellStack.trailingAnchor, constant: -307),
             cellImage.widthAnchor.constraint(equalToConstant: 48),
             cellImage.heightAnchor.constraint(equalToConstant: 48),
 //            
@@ -169,29 +169,41 @@ class TransactionCell: UICollectionViewCell {
             textStack.topAnchor.constraint(equalTo: cellStack.topAnchor, constant: 14),
             textStack.bottomAnchor.constraint(equalTo: cellStack.bottomAnchor, constant: -28),
             textStack.heightAnchor.constraint(equalToConstant: 44),
-//            textStack.widthAnchor.constraint(equalToConstant: 254),
-//            
+           
             // Констрейты для позиции titleText в вертикальном стэке textStack
             cellTitleText.leadingAnchor.constraint(equalTo: textStack.leadingAnchor),
-////            titleText.trailingAnchor.constraint(equalTo: textStack.trailingAnchor, constant: -37),
             cellTitleText.topAnchor.constraint(equalTo: textStack.topAnchor, constant: 2),
             cellTitleText.widthAnchor.constraint(equalToConstant: 254),
-//            titleText.bottomAnchor.constraint(equalTo: image.bottomAnchor, constant: -34),
             
             // Констрейты для позиции subTitleText в вертикальном стэке textStack
             cellSubTitleText.leadingAnchor.constraint(equalTo: textStack.leadingAnchor),
             cellSubTitleText.topAnchor.constraint(equalTo: cellTitleText.bottomAnchor, constant: 4),
             // Устанавливаем размеры (ширина - fill, высота - hug)
             cellSubTitleText.widthAnchor.constraint(equalToConstant: 254),
-//            titleFrame.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)
-            
         ])
     }
     
     // Конфигурируем ячейку
-    func configureCell(dataCell: TransactionCellData) {
+    func configureCell(dataCell: HomeViewController.TransactionCellData) {
         cellImage.image = dataCell.image
-        cellTitleText.text = dataCell.titleText
-        cellSubTitleText.text = dataCell.subTitleText
+
+        // Настраиваем атрибуты текста для cellTitleText
+        let atributesForTitle: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+            .kern: 0.38
+        ]
+        let attributedTextForTitle: NSAttributedString = NSAttributedString(string: dataCell.titleText, attributes: atributesForTitle)
+        
+        cellTitleText.attributedText = attributedTextForTitle
+        
+        // Настраиваем атрибуты текста для subTitleText
+        let atributesForSubTitle: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 13, weight: .regular),
+            .kern: 0,
+            .foregroundColor: UIColor(named: "TransCellSubTitleText") as Any
+        ]
+        let attributedTextForSubTitle: NSAttributedString = NSAttributedString(string: dataCell.subTitleText, attributes: atributesForSubTitle)
+        
+        cellSubTitleText.attributedText = attributedTextForSubTitle
     }
 }

@@ -11,13 +11,13 @@ protocol PinViewModelDelegate: AnyObject {
     func fetchedPinStates(pins: [PinModel])
 }
 
+protocol KeyTapDelegate: AnyObject {
+    func didUpdateData(_ identifier: String)
+}
+
 class PinCodeViewController: UIViewController {
     
-    var states: [PinModel] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    var states = PinViewModel()
     
     // MARK: - Subviews
     
@@ -28,7 +28,7 @@ class PinCodeViewController: UIViewController {
         // layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.backgroundColor = .systemRed
+        collection.backgroundColor = .white
         collection.contentInsetAdjustmentBehavior = .never
         collection.dataSource = self
         collection.delegate = self
@@ -48,7 +48,7 @@ class PinCodeViewController: UIViewController {
         // Скрытие кнопки назад
         self.navigationItem.hidesBackButton = true
         // navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close)
-        
+     
         registerCells()
         setupSubviews()
         setupConstraints()  
@@ -72,6 +72,12 @@ class PinCodeViewController: UIViewController {
             PinCell.self,
             forCellWithReuseIdentifier: PinCell.identifier
         )
+        collectionView.register(
+            KeyCell.self,
+            forCellWithReuseIdentifier: KeyCell.identifier)
+        collectionView.register(
+            FogotButtonCell.self ,
+            forCellWithReuseIdentifier: FogotButtonCell.identifier)
     }
      
     private func setupSubviews() {
@@ -99,7 +105,7 @@ class PinCodeViewController: UIViewController {
 extension PinCodeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,9 +117,11 @@ extension PinCodeViewController: UICollectionViewDataSource {
         case 2:
             return 1 //Количество ячеек типа SubTitleCell
         case 3:
-            return 4 // Количество ячеек типа PinCell
+            return 1 // Количество ячеек типа PinCell
         case 4:
-            return 1 // Количество ячеек типа ContinueButtonCell
+            return 1 // Количество ячеек типа KeyCell
+        case 5:
+            return 1 // Количество ячеек тиа FogotButtonCell
         default:
             return 0
         }
@@ -149,20 +157,35 @@ extension PinCodeViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as! PinCell
             // Передача данных из ViewModel для каждой ячейки второй секции
-            let dataForCell = states[indexPath.item]
-            switch dataForCell.state {
-            case .active:
-                cell.configureCell(dataCell: UIImage(named: "PinFilled")!)
-            case .inactive:
-                cell.configureCell(dataCell: UIImage(named: "Pin")!)
+            states.delegate = self
+            print(states.pins)
+            let dataForCell: [UIImage] = states.pins.map {
+                switch $0.state {
+                case .active:
+                    return UIImage(named: "PinFilled")!
+                case .inactive:
+                   return UIImage(named: "Pin")!
+                }
             }
-            
+            cell.configureCell(dataCell: dataForCell)
+          
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ContinueButtonCell.identifier,
+                withReuseIdentifier: KeyCell.identifier,
                 for: indexPath
-            ) as! ContinueButtonCell
+            ) as! KeyCell
+        
+            cell.delegate = self
+            
+            return cell
+        case 5:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: FogotButtonCell.identifier,
+                for: indexPath
+            ) as! FogotButtonCell
+            
+            cell.delegate = self
             
             return cell
         default:
@@ -184,9 +207,11 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
         case 2:
             return CGSize(width: collectionView.bounds.width, height: 58)
         case 3:
-            return CGSize(width: 40, height: 40)
+            return CGSize(width: collectionView.bounds.width, height: 148)
         case 4:
-            return CGSize(width: collectionView.bounds.width, height: 88)
+            return CGSize(width: collectionView.bounds.width, height: 368)
+        case 5:
+            return CGSize(width: collectionView.bounds.width, height: 32)
         default:
             return CGSize.zero
         }
@@ -214,17 +239,37 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - CustomButtonCellDelegate
 
 extension PinCodeViewController: CustomButtonGoBackCellDelegate {
-    func didTapButton(in cell: NavigationBarCell) {
+    func didTapCloseButton(in cell: NavigationBarCell) {
         // Возвращаемся на предыдущий экран
         navigationController?.popViewController(animated: true)
     }
 }
 
+// MARK: - FogotButtonCellDelegate
+
+extension PinCodeViewController: FogotButtonCellDelegate {
+    func didTapFogotButton(in cell: FogotButtonCell) {
+        // Возвращаемся на предыдущий экран
+        navigationController?.popViewController(animated: true)
+    }
+}
 
 // MARK: - PinViewModelDelegate
 
 extension PinCodeViewController: PinViewModelDelegate {
     func fetchedPinStates(pins: [PinModel]) {
-        states = pins
+        states.pins = pins
+        print(states.pins)
     }
+}
+
+// MARK: - KeyTapDelegate
+
+extension PinCodeViewController: KeyTapDelegate {
+    func didUpdateData(_ identifier: String) {
+        print(identifier)
+//        states.udateDataFromVC(identifier)
+    }
+    
+    
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CustomButtonGoBackCellDelegate: AnyObject {
-    func didTapButton(in cell: NavigationBarCell)
+    func didTapCloseButton(in cell: NavigationBarCell)
 }
 
 class NavigationBarCell: UICollectionViewCell {
@@ -55,7 +55,7 @@ class NavigationBarCell: UICollectionViewCell {
         button.setContentHuggingPriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        // Настраиваем действие по нажатию кнопки - lобавляем обработчики событий
+        // Настраиваем действие по нажатию кнопки - добавляем обработчики событий
         button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
         button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
@@ -114,7 +114,7 @@ class NavigationBarCell: UICollectionViewCell {
         UIButton.animate(withDuration: 0.2) { [self] in
             closeButton.alpha = 1.0
         }
-        delegate?.didTapButton(in: self)
+        delegate?.didTapCloseButton(in: self)
     }
 
 }

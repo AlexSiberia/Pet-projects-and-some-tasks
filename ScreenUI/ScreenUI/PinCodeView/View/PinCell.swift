@@ -12,35 +12,50 @@ class PinCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    // Создаем сруктуру данных для ячейки
-//    struct PinCellData {
-//        let image: UIImage
-//    }
-//    
-//    // Создаем массив данных для секции с ячейками TransactionCell
-//    let sectionData: [PinCellData] = [
-//        PinCellData(image: UIImage(named: "PinFilled")!),
-//        PinCellData(image: UIImage(named: "Pin")!),
-//        PinCellData(image: UIImage(named: "Pin")!),
-//        PinCellData(image: UIImage(named: "Pin")!)
-//    ]
     // MARK: - Subviews
     
-//    // Созданм горизонтальный стэк для размещения в нем изображений пинов
-//    private lazy var cellImage: UIStackView = {
-//        let stack = UIStackView()
-//        stack.backgroundColor = .white
-//        stack.axis = .horizontal
-//        stack.spacing = 8
-//        stack.alignment = .fill
-//        stack.distribution = .fill
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//        stack.contentMode = .scaleAspectFill
-//        
-//        return stack
-//    }()
+    // Созданм горизонтальный стэк для размещения в нем изображений пинов
+    private lazy var cellImageStack: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .white
+        stack.axis = .horizontal
+        stack.spacing = 8
+        stack.alignment = .fill
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.contentMode = .scaleAspectFill
+        
+        return stack
+    }()
     
-    private lazy var cellImage: UIImageView = {
+    private lazy var cellPin1Image: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
+    private lazy var cellPin2Image: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
+    private lazy var cellPin3Image: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
+    private lazy var cellPin4Image: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
@@ -61,8 +76,11 @@ class PinCell: UICollectionViewCell {
     }
     
     private func setupSubviews() {
-        contentView.addSubview(cellImage)
-        
+        contentView.addSubview(cellImageStack)
+        cellImageStack.addSubview(cellPin1Image)
+        cellImageStack.addSubview(cellPin2Image)
+        cellImageStack.addSubview(cellPin3Image)
+        cellImageStack.addSubview(cellPin4Image)
         setupConstraints()
     }
     
@@ -71,11 +89,41 @@ class PinCell: UICollectionViewCell {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
+            cellImageStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cellImageStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            cellImageStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellImageStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellImageStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            cellPin1Image.topAnchor.constraint(equalTo: cellImageStack.topAnchor, constant: 72),
+            cellPin1Image.leadingAnchor.constraint(equalTo: cellImageStack.leadingAnchor, constant: contentView.bounds.width / 2 - 98),
+            cellPin1Image.widthAnchor.constraint(equalToConstant: 40),
+            cellPin1Image.heightAnchor.constraint(equalToConstant: 40),
+//            cellPin1Image.bottomAnchor.constraint(equalTo: cellImageStack.bottomAnchor, constant: 36),
+            
+            cellPin2Image.leadingAnchor.constraint(equalTo: cellPin1Image.trailingAnchor, constant: 12),
+            cellPin2Image.topAnchor.constraint(equalTo: cellPin1Image.topAnchor),
+            cellPin2Image.widthAnchor.constraint(equalToConstant: 40),
+            cellPin2Image.heightAnchor.constraint(equalToConstant: 40),
+            
+            cellPin3Image.leadingAnchor.constraint(equalTo: cellPin2Image.trailingAnchor, constant: 12),
+            cellPin3Image.topAnchor.constraint(equalTo: cellPin1Image.topAnchor),
+            cellPin3Image.widthAnchor.constraint(equalToConstant: 40),
+            cellPin3Image.heightAnchor.constraint(equalToConstant: 40),
+            
+            cellPin4Image.leadingAnchor.constraint(equalTo: cellPin3Image.trailingAnchor, constant: 12),
+            cellPin4Image.topAnchor.constraint(equalTo: cellPin1Image.topAnchor),
+            cellPin4Image.widthAnchor.constraint(equalToConstant: 40),
+            cellPin4Image.heightAnchor.constraint(equalToConstant: 40),
+            
         ])
     }
     
     // Конфигурируем ячейку
-    func configureCell(dataCell: UIImage) {
-        cellImage.image = dataCell
+    func configureCell(dataCell: [UIImage]) {
+        cellPin1Image.image = dataCell[0]
+        cellPin2Image.image = dataCell[1]
+        cellPin3Image.image = dataCell[2]
+        cellPin4Image.image = dataCell[3]
     }
 }

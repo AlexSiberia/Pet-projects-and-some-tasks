@@ -13,17 +13,17 @@ class PinCell: UICollectionViewCell {
     }
     
     // Создаем сруктуру данных для ячейки
-    struct PinCellData {
-        let image: UIImage
-    }
-    
-    // Создаем массив данных для секции с ячейками TransactionCell
-    let sectionData: [PinCellData] = [
-        PinCellData(image: UIImage(named: "PinFilled")!),
-        PinCellData(image: UIImage(named: "Pin")!),
-        PinCellData(image: UIImage(named: "Pin")!),
-        PinCellData(image: UIImage(named: "Pin")!)
-    ]
+//    struct PinCellData {
+//        let image: UIImage
+//    }
+//    
+//    // Создаем массив данных для секции с ячейками TransactionCell
+//    let sectionData: [PinCellData] = [
+//        PinCellData(image: UIImage(named: "PinFilled")!),
+//        PinCellData(image: UIImage(named: "Pin")!),
+//        PinCellData(image: UIImage(named: "Pin")!),
+//        PinCellData(image: UIImage(named: "Pin")!)
+//    ]
     // MARK: - Subviews
     
 //    // Созданм горизонтальный стэк для размещения в нем изображений пинов
@@ -71,14 +71,11 @@ class PinCell: UICollectionViewCell {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            
         ])
     }
     
-    
-    
     // Конфигурируем ячейку
-    func configureCell(dataCell: PinCellData) {
-        cellImage.image = dataCell.image
+    func configureCell(dataCell: UIImage) {
+        cellImage.image = dataCell
     }
 }

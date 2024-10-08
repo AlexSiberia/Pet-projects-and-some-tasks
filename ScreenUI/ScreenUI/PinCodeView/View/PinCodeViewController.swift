@@ -7,7 +7,17 @@
 
 import UIKit
 
-class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomButtonGoBackCellDelegate {
+protocol PinViewModelDelegate: AnyObject {
+    func fetchedPinStates(pins: [PinModel])
+}
+
+class PinCodeViewController: UIViewController {
+    
+    var states: [PinModel] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: - Subviews
     
@@ -26,8 +36,6 @@ class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICol
         
         return collection
     }()
-    
-    
     
     // MARK: - Lifecycle
     
@@ -65,9 +73,7 @@ class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICol
             forCellWithReuseIdentifier: PinCell.identifier
         )
     }
-    
-    
-    
+     
     private func setupSubviews() {
         view.addSubview(collectionView)
     }
@@ -86,14 +92,15 @@ class PinCodeViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 }
 
+    
 
-extension PinCodeViewController {
+// MARK: - UICollectionViewDataSource
+
+extension PinCodeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 4
     }
-    
-    // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
@@ -141,9 +148,14 @@ extension PinCodeViewController {
                 withReuseIdentifier: PinCell.identifier,
                 for: indexPath
             ) as! PinCell
-            // Передача данных из массива для каждой ячейки второй секции
-            let dataForCell = PinCell().sectionData[indexPath.item]
-            cell.configureCell(dataCell: dataForCell)
+            // Передача данных из ViewModel для каждой ячейки второй секции
+            let dataForCell = states[indexPath.item]
+            switch dataForCell.state {
+            case .active:
+                cell.configureCell(dataCell: UIImage(named: "PinFilled")!)
+            case .inactive:
+                cell.configureCell(dataCell: UIImage(named: "Pin")!)
+            }
             
             return cell
         case 4:
@@ -157,8 +169,11 @@ extension PinCodeViewController {
             fatalError("Unexpected section")
         }
     }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
@@ -169,13 +184,6 @@ extension PinCodeViewController {
         case 2:
             return CGSize(width: collectionView.bounds.width, height: 58)
         case 3:
-            // Рассчитываем ширину ячейки, чтобы вмещалось 4 ячейки с учетом отступов
-//            let numberOfItemsInRow: CGFloat = 4
-//            let spacing: CGFloat = 12 // Отступы между ячейками
-//            let totalSpacing = (numberOfItemsInRow - 1) * spacing
-//            let availableWidth = collectionView.bounds.width - totalSpacing
-//            let itemWidth = availableWidth / numberOfItemsInRow
-            
             return CGSize(width: 40, height: 40)
         case 4:
             return CGSize(width: collectionView.bounds.width, height: 88)
@@ -196,15 +204,27 @@ extension PinCodeViewController {
     // Минимальное расстояние между строками
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 //        return 10 // Расстояние между строками
-//        
-//        
+//
+//
 //    }
-    
-    // MARK: - CustomButtonCellDelegate
-    
+}
+//extension PinCodeViewController: UICollectionViewDelegate {
+//    
+//}
+// MARK: - CustomButtonCellDelegate
+
+extension PinCodeViewController: CustomButtonGoBackCellDelegate {
     func didTapButton(in cell: NavigationBarCell) {
         // Возвращаемся на предыдущий экран
         navigationController?.popViewController(animated: true)
-        
+    }
+}
+
+
+// MARK: - PinViewModelDelegate
+
+extension PinCodeViewController: PinViewModelDelegate {
+    func fetchedPinStates(pins: [PinModel]) {
+        states = pins
     }
 }

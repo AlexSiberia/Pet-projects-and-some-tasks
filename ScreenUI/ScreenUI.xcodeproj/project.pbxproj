@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392C21D72C9C6621008039EF /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C21D62C9C6615008039EF /* PinModel.swift */; };
+		392C21D92C9C6B6B008039EF /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C21D82C9C6B5F008039EF /* PinViewModel.swift */; };
 		3935F7932C8317F40052857B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7922C8317F40052857B /* AppDelegate.swift */; };
 		3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7942C8317F40052857B /* SceneDelegate.swift */; };
 		3935F7972C8317F40052857B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3935F7962C8317F40052857B /* HomeViewController.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		392C21D62C9C6615008039EF /* PinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinModel.swift; sourceTree = "<group>"; };
+		392C21D82C9C6B5F008039EF /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
 		3935F78F2C8317F40052857B /* ScreenUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3935F7922C8317F40052857B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3935F7942C8317F40052857B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +61,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		392C21D32C9C5C93008039EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				392C21D62C9C6615008039EF /* PinModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		392C21D42C9C5CB4008039EF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				392C21D82C9C6B5F008039EF /* PinViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		392C21D52C9C5CC0008039EF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				394CB9712C95D6A300081B38 /* PinCodeViewController.swift */,
+				394CB9772C97037F00081B38 /* NavigationBarCell.swift */,
+				394CB9752C95F91F00081B38 /* TitleCell.swift */,
+				394CB9792C97F23B00081B38 /* SubTitleCell.swift */,
+				394CB97B2C984B9800081B38 /* PinCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3935F7862C8317F30052857B = {
 			isa = PBXGroup;
 			children = (
@@ -108,11 +140,9 @@
 		394CB9742C95D6D800081B38 /* PinCodeView */ = {
 			isa = PBXGroup;
 			children = (
-				394CB9712C95D6A300081B38 /* PinCodeViewController.swift */,
-				394CB9772C97037F00081B38 /* NavigationBarCell.swift */,
-				394CB9752C95F91F00081B38 /* TitleCell.swift */,
-				394CB9792C97F23B00081B38 /* SubTitleCell.swift */,
-				394CB97B2C984B9800081B38 /* PinCell.swift */,
+				392C21D42C9C5CB4008039EF /* ViewModel */,
+				392C21D32C9C5C93008039EF /* Model */,
+				392C21D52C9C5CC0008039EF /* View */,
 			);
 			path = PinCodeView;
 			sourceTree = "<group>";
@@ -205,8 +235,10 @@
 				39B750F02C8603DE00442F55 /* TextHeaderCell.swift in Sources */,
 				394CB9762C95F91F00081B38 /* TitleCell.swift in Sources */,
 				3935F7972C8317F40052857B /* HomeViewController.swift in Sources */,
+				392C21D92C9C6B6B008039EF /* PinViewModel.swift in Sources */,
 				3935F7932C8317F40052857B /* AppDelegate.swift in Sources */,
 				394CB9782C97037F00081B38 /* NavigationBarCell.swift in Sources */,
+				392C21D72C9C6621008039EF /* PinModel.swift in Sources */,
 				394CB9702C90052C00081B38 /* ContinueButtonCell.swift in Sources */,
 				3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */,
 				394CB9722C95D6A300081B38 /* PinCodeViewController.swift in Sources */,

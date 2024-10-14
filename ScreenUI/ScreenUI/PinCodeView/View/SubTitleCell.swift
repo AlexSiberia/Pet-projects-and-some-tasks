@@ -12,6 +12,9 @@ class SubTitleCell: UICollectionViewCell {
         return String(describing: self)
     }
     
+    weak var delegate: FirstPinEnteredDelegate?
+ 
+
     // MARK: - Subviews
     
     private lazy var cellView: UIView = {
@@ -87,4 +90,27 @@ class SubTitleCell: UICollectionViewCell {
 
         ])
     }
+    
+    //    // Метод для обновления тайтла
+    //    func updateTitle(isComplete: Bool) {
+    //        cellText.text = isComplete ? "Пин-код введен" : "Введите пин-код"
+    //    }
+    
+    func configure(withDelegate delegate: FirstPinEnteredDelegate, text: String) {
+        self.delegate = delegate
+    }
+    
+    // Метод для обновления текста лейбла из ViewController
+        func updateLabel(with text: String) {
+            cellText.attributedText = NSAttributedString(string: text)
+        }
 }
+//
+//extension SubTitleCell: SubTitleCellDelegate {
+//    func updateSubTitle(isComplete: Bool) {
+//        cellText.text = isComplete ? "Пин-код введен" : "Введите пин-код"
+//        delegate?.updateCell()
+//    }
+    
+    
+//}

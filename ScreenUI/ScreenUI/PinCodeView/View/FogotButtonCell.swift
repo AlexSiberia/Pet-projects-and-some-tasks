@@ -98,3 +98,12 @@ class FogotButtonCell: UICollectionViewCell {
         delegate?.didTapFogotButton(in: self)
     }
 }
+
+
+// MARK: - FirstPinEnteredDelegate
+
+//extension FogotButtonCell: FirstPinEnteredDelegate {
+//    func changePinScreenToConfirmScreen() {
+//        fogotButton.isHidden = true
+//    }
+//}

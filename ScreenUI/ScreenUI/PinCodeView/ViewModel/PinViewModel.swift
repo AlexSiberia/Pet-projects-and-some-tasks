@@ -13,63 +13,88 @@ class PinViewModel {
         if let inputModel = model {
             pins = inputModel
         }
-        self.delegate?.fetchedPinStates(pins: pins)
+//        self.delegate?.fetchedPinStates(pins: pins)
     }
     var count: Int = 0
-    var pins: [PinModel] = [PinModel(state: .active), PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive)]
+    var confirmedCount: Int = 0
+    private var pinNumbers: [Int] = []
+    private var confirmedPinNumbers: [Int] = []
     
-//    func udateDataFromVC(_ identifier: String) {
-//        print("VM\(identifier)")
-//        
-//        switch identifier {
-//        case "keyButton0":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton1":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton2":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton3":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton4":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton5":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton6":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton7":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton8":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButton9":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        case "keyButtonDel":
-//            pins[count].state = .active
-//            count += 1
-//            delegate?.fetchedPinStates(pins: pins)
-//        default:
-//            break
-//        }
-//    }
+    var pins: [PinModel] = [PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive)]
+    
+    func udateDataFromVC(_ identifier: String) {
+        print("VM\(identifier)")
+        
+        switch identifier {
+        case "0":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "1":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "2":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "3":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "4":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "5":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "6":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "7":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "8":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "9":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        case "keyButtonDel":
+            pins[count].state = .active
+            count += 1
+            pinNumbers.append(Int(identifier) ?? 0)
+            delegate?.fetchedPinStates(pins: pins)
+        default:
+            break
+        }
+        
+        if count == 4 && confirmedCount == 0 {
+            confirmedPinNumbers = pinNumbers
+            pinNumbers.removeAll()
+            confirmedCount = count
+            count = 0
+            delegate?.enteredPin()
+        } else if count == 4 && confirmedCount == 4 {
+            
+        }
+    }
 }
 
 //extension PinViewModel: KeyTapDelegate {

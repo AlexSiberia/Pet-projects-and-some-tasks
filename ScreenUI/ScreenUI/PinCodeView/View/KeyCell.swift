@@ -83,14 +83,32 @@ class KeyCell: UICollectionViewCell {
         return stack
     }()
     
-    private lazy var keyButton1: UIButton = {
+    private let buttons: [UIButton] = (0...9).map { number in
+        
         var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key1")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
+        //        configuration.image = UIImage(named: "Key1")!
+        //                    .applyingSymbolConfiguration(.init(pointSize: 100))
+        
         configuration.cornerStyle = .capsule
         configuration.contentInsets = .zero
+        configuration.titleAlignment = .center
+        configuration.baseForegroundColor = UIColor(named: "TextKeyButton")
+        //        configuration.imagePlacement = .leading
+        //        configuration.imagePadding = -100
+        
+        
+        let textForTitle: String = "\(number)"
+        
+        // Настраиваем атрибуты текста
+        let atributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 36, weight: .regular)
+            
+        ]
+        let attributedText: NSAttributedString = NSAttributedString(string: textForTitle, attributes: atributes)
         
         let button = UIButton(configuration: configuration)
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tag = number // Используем tag, чтобы понять какая кнопка была нажата
         
         button.configurationUpdateHandler = { button in
             var config = button.configuration
@@ -106,230 +124,32 @@ class KeyCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
         return button
-    }()
+    }
+    //    private lazy var keyButton1: UIButton = {
+    //        var configuration = UIButton.Configuration.filled()
+    //        configuration.image = UIImage(named: "Key1")!
+    //            .applyingSymbolConfiguration(.init(pointSize: 100))
+    //        configuration.cornerStyle = .capsule
+    //        configuration.contentInsets = .zero
+    //
+    //        let button = UIButton(configuration: configuration)
+    //
+    //        button.configurationUpdateHandler = { button in
+    //            var config = button.configuration
+    //            config?.baseBackgroundColor = button.isHighlighted ?
+    //            UIColor(named: "TappedKey") :
+    //            UIColor.white
+    //            button.configuration = config
+    //        }
+    //
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //
+    //        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
+    //        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+    //
+    //        return button
+    //    }()
     
-    private lazy var keyButton2: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key2")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton3: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key3")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton4: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key4")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton5: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key5")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton6: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key6")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    private lazy var keyButton7: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key7")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton8: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key8")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton9: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key9")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        return button
-    }()
-    
-    private lazy var keyButton0: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.image = UIImage(named: "Key0")!
-            .applyingSymbolConfiguration(.init(pointSize: 100))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
-        
-        let button = UIButton(configuration: configuration)
-        
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            config?.baseBackgroundColor = button.isHighlighted ?
-            UIColor(named: "TappedKey") :
-            UIColor.white
-            button.configuration = config
-        }
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(keyButtonDel, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        return button
-    }()
     
     private lazy var keyButtonDel: UIButton = {
         var identifier: String {
@@ -341,10 +161,7 @@ class KeyCell: UICollectionViewCell {
             .applyingSymbolConfiguration(.init(pointSize: 100))
         configuration.cornerStyle = .capsule
         configuration.contentInsets = .zero
-//        configuration.title = "Del"
-        
-        
-        
+     
         let button = UIButton(configuration: configuration)
         
         button.configurationUpdateHandler = { button in
@@ -362,7 +179,7 @@ class KeyCell: UICollectionViewCell {
         
         return button
     }()
-
+    
     private lazy var cellKeyImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -390,21 +207,21 @@ class KeyCell: UICollectionViewCell {
         keyVerticalStack.addSubview(keyButtonHorizontalStack3)
         keyVerticalStack.addSubview(keyButtonHorizontalStack4)
         
-        keyButtonHorizontalStack1.addSubview(keyButton1)
-        keyButtonHorizontalStack1.addSubview(keyButton2)
-        keyButtonHorizontalStack1.addSubview(keyButton3)
+        keyButtonHorizontalStack1.addSubview(buttons[1])
+        keyButtonHorizontalStack1.addSubview(buttons[2])
+        keyButtonHorizontalStack1.addSubview(buttons[3])
         
-        keyButtonHorizontalStack2.addSubview(keyButton4)
-        keyButtonHorizontalStack2.addSubview(keyButton5)
-        keyButtonHorizontalStack2.addSubview(keyButton6)
+        keyButtonHorizontalStack2.addSubview(buttons[4])
+        keyButtonHorizontalStack2.addSubview(buttons[5])
+        keyButtonHorizontalStack2.addSubview(buttons[6])
         
-        keyButtonHorizontalStack3.addSubview(keyButton7)
-        keyButtonHorizontalStack3.addSubview(keyButton8)
-        keyButtonHorizontalStack3.addSubview(keyButton9)
+        keyButtonHorizontalStack3.addSubview(buttons[7])
+        keyButtonHorizontalStack3.addSubview(buttons[8])
+        keyButtonHorizontalStack3.addSubview(buttons[9])
         
-        keyButtonHorizontalStack4.addSubview(keyButton0)
+        keyButtonHorizontalStack4.addSubview(buttons[0])
         keyButtonHorizontalStack4.addSubview(keyButtonDel)
-           
+        
         setupConstraints()
     }
     
@@ -423,75 +240,75 @@ class KeyCell: UICollectionViewCell {
             keyButtonHorizontalStack1.trailingAnchor.constraint(equalTo: keyVerticalStack.trailingAnchor),
             keyButtonHorizontalStack1.heightAnchor.constraint(equalToConstant: 80),
             
-            keyButton1.heightAnchor.constraint(equalToConstant: 80),
-            keyButton1.widthAnchor.constraint(equalToConstant: 80),
-            keyButton1.topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
-            keyButton1.leadingAnchor.constraint(equalTo: keyButtonHorizontalStack1.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
+            buttons[1].heightAnchor.constraint(equalToConstant: 80),
+            buttons[1].widthAnchor.constraint(equalToConstant: 80),
+            buttons[1].topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
+            buttons[1].leadingAnchor.constraint(equalTo: keyButtonHorizontalStack1.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
             
-            keyButton2.heightAnchor.constraint(equalToConstant: 80),
-            keyButton2.widthAnchor.constraint(equalToConstant: 80),
-            keyButton2.topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
-            keyButton2.leadingAnchor.constraint(equalTo: keyButton1.trailingAnchor, constant: 40),
+            buttons[2].heightAnchor.constraint(equalToConstant: 80),
+            buttons[2].widthAnchor.constraint(equalToConstant: 80),
+            buttons[2].topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
+            buttons[2].leadingAnchor.constraint(equalTo: buttons[1].trailingAnchor, constant: 40),
             
-            keyButton3.heightAnchor.constraint(equalToConstant: 80),
-            keyButton3.widthAnchor.constraint(equalToConstant: 80),
-            keyButton3.topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
-            keyButton3.leadingAnchor.constraint(equalTo: keyButton2.trailingAnchor, constant: 40),
+            buttons[3].heightAnchor.constraint(equalToConstant: 80),
+            buttons[3].widthAnchor.constraint(equalToConstant: 80),
+            buttons[3].topAnchor.constraint(equalTo: keyButtonHorizontalStack1.topAnchor),
+            buttons[3].leadingAnchor.constraint(equalTo: buttons[2].trailingAnchor, constant: 40),
             
             keyButtonHorizontalStack2.topAnchor.constraint(equalTo: keyButtonHorizontalStack1.bottomAnchor,constant: 16),
             keyButtonHorizontalStack2.leadingAnchor.constraint(equalTo: keyVerticalStack.leadingAnchor),
             keyButtonHorizontalStack2.trailingAnchor.constraint(equalTo: keyVerticalStack.trailingAnchor),
             keyButtonHorizontalStack2.heightAnchor.constraint(equalToConstant: 80),
             
-            keyButton4.heightAnchor.constraint(equalToConstant: 80),
-            keyButton4.widthAnchor.constraint(equalToConstant: 80),
-            keyButton4.topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
-            keyButton4.leadingAnchor.constraint(equalTo: keyButtonHorizontalStack2.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
+            buttons[4].heightAnchor.constraint(equalToConstant: 80),
+            buttons[4].widthAnchor.constraint(equalToConstant: 80),
+            buttons[4].topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
+            buttons[4].leadingAnchor.constraint(equalTo: keyButtonHorizontalStack2.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
             
-            keyButton5.heightAnchor.constraint(equalToConstant: 80),
-            keyButton5.widthAnchor.constraint(equalToConstant: 80),
-            keyButton5.topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
-            keyButton5.leadingAnchor.constraint(equalTo: keyButton4.trailingAnchor, constant: 40),
+            buttons[5].heightAnchor.constraint(equalToConstant: 80),
+            buttons[5].widthAnchor.constraint(equalToConstant: 80),
+            buttons[5].topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
+            buttons[5].leadingAnchor.constraint(equalTo:             buttons[4].trailingAnchor, constant: 40),
             
-            keyButton6.heightAnchor.constraint(equalToConstant: 80),
-            keyButton6.widthAnchor.constraint(equalToConstant: 80),
-            keyButton6.topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
-            keyButton6.leadingAnchor.constraint(equalTo: keyButton5.trailingAnchor, constant: 40),
+            buttons[6].heightAnchor.constraint(equalToConstant: 80),
+            buttons[6].widthAnchor.constraint(equalToConstant: 80),
+            buttons[6].topAnchor.constraint(equalTo: keyButtonHorizontalStack2.topAnchor),
+            buttons[6].leadingAnchor.constraint(equalTo:             buttons[5].trailingAnchor, constant: 40),
             
             keyButtonHorizontalStack3.topAnchor.constraint(equalTo: keyButtonHorizontalStack2.bottomAnchor,constant: 16),
             keyButtonHorizontalStack3.leadingAnchor.constraint(equalTo: keyVerticalStack.leadingAnchor),
             keyButtonHorizontalStack3.trailingAnchor.constraint(equalTo: keyVerticalStack.trailingAnchor),
             keyButtonHorizontalStack3.heightAnchor.constraint(equalToConstant: 80),
             
-            keyButton7.heightAnchor.constraint(equalToConstant: 80),
-            keyButton7.widthAnchor.constraint(equalToConstant: 80),
-            keyButton7.topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
-            keyButton7.leadingAnchor.constraint(equalTo: keyButtonHorizontalStack2.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
+            buttons[7].heightAnchor.constraint(equalToConstant: 80),
+            buttons[7].widthAnchor.constraint(equalToConstant: 80),
+            buttons[7].topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
+            buttons[7].leadingAnchor.constraint(equalTo: keyButtonHorizontalStack2.leadingAnchor, constant: contentView.bounds.width / 2 - 160),
             
-            keyButton8.heightAnchor.constraint(equalToConstant: 80),
-            keyButton8.widthAnchor.constraint(equalToConstant: 80),
-            keyButton8.topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
-            keyButton8.leadingAnchor.constraint(equalTo: keyButton7.trailingAnchor, constant: 40),
+            buttons[8].heightAnchor.constraint(equalToConstant: 80),
+            buttons[8].widthAnchor.constraint(equalToConstant: 80),
+            buttons[8].topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
+            buttons[8].leadingAnchor.constraint(equalTo:             buttons[7].trailingAnchor, constant: 40),
             
-            keyButton9.heightAnchor.constraint(equalToConstant: 80),
-            keyButton9.widthAnchor.constraint(equalToConstant: 80),
-            keyButton9.topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
-            keyButton9.leadingAnchor.constraint(equalTo: keyButton8.trailingAnchor, constant: 40),
+            buttons[9].heightAnchor.constraint(equalToConstant: 80),
+            buttons[9].widthAnchor.constraint(equalToConstant: 80),
+            buttons[9].topAnchor.constraint(equalTo: keyButtonHorizontalStack3.topAnchor),
+            buttons[9].leadingAnchor.constraint(equalTo:             buttons[8].trailingAnchor, constant: 40),
             
             keyButtonHorizontalStack4.topAnchor.constraint(equalTo: keyButtonHorizontalStack3.bottomAnchor,constant: 16),
             keyButtonHorizontalStack4.leadingAnchor.constraint(equalTo: keyVerticalStack.leadingAnchor),
             keyButtonHorizontalStack4.trailingAnchor.constraint(equalTo: keyVerticalStack.trailingAnchor),
             keyButtonHorizontalStack4.heightAnchor.constraint(equalToConstant: 80),
             
-            keyButton0.heightAnchor.constraint(equalToConstant: 80),
-            keyButton0.widthAnchor.constraint(equalToConstant: 80),
-            keyButton0.topAnchor.constraint(equalTo: keyButtonHorizontalStack4.topAnchor),
-            keyButton0.leadingAnchor.constraint(equalTo: keyButtonHorizontalStack4.leadingAnchor, constant: contentView.bounds.width / 2 - 40),
+            buttons[0].heightAnchor.constraint(equalToConstant: 80),
+            buttons[0].widthAnchor.constraint(equalToConstant: 80),
+            buttons[0].topAnchor.constraint(equalTo: keyButtonHorizontalStack4.topAnchor),
+            buttons[0].leadingAnchor.constraint(equalTo: keyButtonHorizontalStack4.leadingAnchor, constant: contentView.bounds.width / 2 - 40),
             
             keyButtonDel.heightAnchor.constraint(equalToConstant: 80),
             keyButtonDel.widthAnchor.constraint(equalToConstant: 80),
             keyButtonDel.topAnchor.constraint(equalTo: keyButtonHorizontalStack4.topAnchor),
-            keyButtonDel.leadingAnchor.constraint(equalTo: keyButton0.trailingAnchor, constant: 40),
+            keyButtonDel.leadingAnchor.constraint(equalTo:             buttons[0].trailingAnchor, constant: 40),
             
         ])
     }
@@ -499,20 +316,22 @@ class KeyCell: UICollectionViewCell {
     // MARK: Actions
     
     // Кнопка становится прозрачной при нажатии
-    @objc private func buttonTouchDown() {
+    @objc private func buttonTouchDown(sender: UIButton) {
         UIButton.animate(withDuration: 0.2) { [self] in
-            keyButtonDel.alpha = 1
+            buttons[sender.tag].alpha = 1
         }
     }
     
     // Восстанавливаем непрозрачность при отпускании или отмене нажатия и обрабатываем событие
     @objc private func buttonTouchUp(sender: UIButton) {
         UIButton.animate(withDuration: 0.2) { [self] in
-            keyButtonDel.alpha = 1.0
+            buttons[sender.tag].alpha = 1
         }
-        delegate?.didUpdateData(String(sender.currentImage.hashValue))
-//        print(String(describing: type(of: self)))
-//        delegate?.didTapFogotButton(in: self)
+        
+        let buttonValue = "\(sender.tag)"
+        delegate?.didUpdateData(buttonValue)
+        //        print(String(describing: type(of: self)))
+        //        delegate?.didTapFogotButton(in: self)
         
     }
 }

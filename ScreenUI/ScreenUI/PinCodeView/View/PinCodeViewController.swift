@@ -7,14 +7,6 @@
 
 import UIKit
 
-protocol PinViewModelDelegate: AnyObject {
-    func fetchedPinStates(pins: [PinModel])
-}
-
-protocol KeyTapDelegate: AnyObject {
-    func didUpdateData(_ identifier: String)
-}
-
 class PinCodeViewController: UIViewController {
     
     var states = PinViewModel()
@@ -128,6 +120,7 @@ extension PinCodeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("Section: \(indexPath.section), Row: \(indexPath.item)")
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(
@@ -150,6 +143,13 @@ extension PinCodeViewController: UICollectionViewDataSource {
                 withReuseIdentifier: SubTitleCell.identifier,
                 for: indexPath
             ) as! SubTitleCell
+            print(indexPath)
+            // Конфигурируем ячейку с делегатом
+//            cell.configure(withDelegate: self, text: "Пин-код введен")
+//            collectionView.reloadData()
+//            cell.delegate = self
+//            cell.cellText.text = "Пин-код введен"
+            
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(
@@ -232,6 +232,23 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
 //
 //
 //    }
+    
+    
+    // MARK: - Обновление конкретной ячейки
+    
+    func updateCell(with newSubTitle: String) {
+        let indexPath = IndexPath(row: 0, section: 2)
+        print(indexPath)
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? SubTitleCell {
+            cell.updateLabel(with: newSubTitle)
+//            collectionView.reloadData()
+        } else {
+            print("Don't work")
+            // Если ячейка не видна, перезагрузим ее
+        }
+        
+    }
 }
 //extension PinCodeViewController: UICollectionViewDelegate {
 //    
@@ -257,9 +274,14 @@ extension PinCodeViewController: FogotButtonCellDelegate {
 // MARK: - PinViewModelDelegate
 
 extension PinCodeViewController: PinViewModelDelegate {
+    func enteredPin() {
+        updateCell(with: "String")
+    }
+    
     func fetchedPinStates(pins: [PinModel]) {
         states.pins = pins
         print(states.pins)
+        self.collectionView.reloadData()
     }
 }
 
@@ -268,8 +290,17 @@ extension PinCodeViewController: PinViewModelDelegate {
 extension PinCodeViewController: KeyTapDelegate {
     func didUpdateData(_ identifier: String) {
         print(identifier)
-//        states.udateDataFromVC(identifier)
+        states.udateDataFromVC(identifier)
+    }
+}
+
+
+// MARK: - FirstPinEnteredDelegate
+
+extension PinCodeViewController: FirstPinEnteredDelegate {
+    func updateCellTitle(isComplete: Bool) {
     }
     
-    
+    func updateCell() {
+    }
 }

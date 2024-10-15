@@ -90,11 +90,7 @@ class SubTitleCell: UICollectionViewCell {
 
         ])
     }
-    
-    //    // Метод для обновления тайтла
-    //    func updateTitle(isComplete: Bool) {
-    //        cellText.text = isComplete ? "Пин-код введен" : "Введите пин-код"
-    //    }
+
     
     func configure(withDelegate delegate: FirstPinEnteredDelegate, text: String) {
         self.delegate = delegate
@@ -102,15 +98,16 @@ class SubTitleCell: UICollectionViewCell {
     
     // Метод для обновления текста лейбла из ViewController
         func updateLabel(with text: String) {
-            cellText.attributedText = NSAttributedString(string: text)
+            
+            let textForSubHeader: String = text
+            
+            // Настраиваем атрибуты текста
+            let atributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 16, weight: .regular),
+                .kern: -0.5
+            ]
+            
+            let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
+            cellText.attributedText = attributedText
         }
 }
-//
-//extension SubTitleCell: SubTitleCellDelegate {
-//    func updateSubTitle(isComplete: Bool) {
-//        cellText.text = isComplete ? "Пин-код введен" : "Введите пин-код"
-//        delegate?.updateCell()
-//    }
-    
-    
-//}

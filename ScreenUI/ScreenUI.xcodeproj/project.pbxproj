@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		391D656F2CB822E3000BADB1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D656E2CB822DB000BADB1 /* Protocols.swift */; };
 		391D65712CB8231F000BADB1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D65702CB82318000BADB1 /* Extensions.swift */; };
-		391D65742CBA414C000BADB1 /* ConfirmPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D65732CBA4148000BADB1 /* ConfirmPinViewController.swift */; };
+		391D65742CBA414C000BADB1 /* HappyScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D65732CBA4148000BADB1 /* HappyScreenViewController.swift */; };
 		392C21D72C9C6621008039EF /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C21D62C9C6615008039EF /* PinModel.swift */; };
 		392C21D92C9C6B6B008039EF /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C21D82C9C6B5F008039EF /* PinViewModel.swift */; };
 		392C22502C9FFE00008039EF /* KeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C224F2C9FFDFA008039EF /* KeyCell.swift */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		391D656E2CB822DB000BADB1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		391D65702CB82318000BADB1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		391D65732CBA4148000BADB1 /* ConfirmPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinViewController.swift; sourceTree = "<group>"; };
+		391D65732CBA4148000BADB1 /* HappyScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyScreenViewController.swift; sourceTree = "<group>"; };
 		392C21D62C9C6615008039EF /* PinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinModel.swift; sourceTree = "<group>"; };
 		392C21D82C9C6B5F008039EF /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
 		392C224F2C9FFDFA008039EF /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		391D65752CBAA533000BADB1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				391D65732CBA4148000BADB1 /* ConfirmPinViewController.swift */,
+				391D65732CBA4148000BADB1 /* HappyScreenViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 				3935F7932C8317F40052857B /* AppDelegate.swift in Sources */,
 				394CB9782C97037F00081B38 /* NavigationBarCell.swift in Sources */,
 				392C21D72C9C6621008039EF /* PinModel.swift in Sources */,
-				391D65742CBA414C000BADB1 /* ConfirmPinViewController.swift in Sources */,
+				391D65742CBA414C000BADB1 /* HappyScreenViewController.swift in Sources */,
 				394CB9702C90052C00081B38 /* ContinueButtonCell.swift in Sources */,
 				3935F7952C8317F40052857B /* SceneDelegate.swift in Sources */,
 				394CB9722C95D6A300081B38 /* PinCodeViewController.swift in Sources */,

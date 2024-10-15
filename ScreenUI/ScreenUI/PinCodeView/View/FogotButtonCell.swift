@@ -97,13 +97,8 @@ class FogotButtonCell: UICollectionViewCell {
         }
         delegate?.didTapFogotButton(in: self)
     }
+    // Метод сокрытия кнопки
+    func hideButton() {
+        fogotButton.isHidden = true
+    }
 }
-
-
-// MARK: - FirstPinEnteredDelegate
-
-//extension FogotButtonCell: FirstPinEnteredDelegate {
-//    func changePinScreenToConfirmScreen() {
-//        fogotButton.isHidden = true
-//    }
-//}

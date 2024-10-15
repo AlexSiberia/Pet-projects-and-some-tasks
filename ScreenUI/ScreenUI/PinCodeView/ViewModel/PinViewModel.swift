@@ -92,13 +92,12 @@ class PinViewModel {
             count = 0
             delegate?.enteredPin()
         } else if count == 4 && confirmedCount == 4 {
-            
+            if confirmedPinNumbers == pinNumbers {
+                // Переход на другой экран
+                delegate?.happyPin()
+            } else {
+                // Показать пины красным цветом и перейти на экран ввода пинкода
+            }
         }
     }
 }
-
-//extension PinViewModel: KeyTapDelegate {
-//    func didUpdateData(_ identifier: String) {
-//        
-//    }
-//}

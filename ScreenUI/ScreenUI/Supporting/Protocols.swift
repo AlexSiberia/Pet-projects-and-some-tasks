@@ -8,6 +8,7 @@
 protocol PinViewModelDelegate: AnyObject {
     func fetchedPinStates(pins: [PinModel])
     func enteredPin()
+    func happyPin()
 }
 
 protocol KeyTapDelegate: AnyObject {

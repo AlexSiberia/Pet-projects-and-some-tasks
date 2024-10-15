@@ -25,17 +25,17 @@ class TitleCell: UICollectionViewCell {
     private lazy var cellText: UILabel = {
         let label = UILabel()
         
-        // Устанавливаем текст для label
-        let textForSubHeader: String = "Код быстрого доступа"
-        
-        // Настраиваем атрибуты текста
-        let atributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 24, weight: .semibold),
-            .kern: -0.5
-        ]
-        
-        let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
-        label.attributedText = attributedText
+//        // Устанавливаем текст для label
+//        let textForSubHeader: String = "Код быстрого доступа"
+//        
+//        // Настраиваем атрибуты текста
+//        let atributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 24, weight: .semibold),
+//            .kern: -0.5
+//        ]
+//        
+//        let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
+//        label.attributedText = attributedText
     
         // Настраиваем цвет текста
         label.textColor = .black
@@ -60,7 +60,7 @@ class TitleCell: UICollectionViewCell {
         setupSubviews()
         self.backgroundColor = .white
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -90,6 +90,22 @@ class TitleCell: UICollectionViewCell {
 
         ])
     }
+    
+    // Метод для обновления текста лейбла из ViewController
+        func configure(with text: String) {
+            
+            let textForSubHeader: String = text
+            
+            // Настраиваем атрибуты текста
+            let atributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 24, weight: .semibold),
+                .kern: -0.5
+            ]
+            
+            let attributedText: NSAttributedString = NSAttributedString(string: textForSubHeader, attributes: atributes)
+            cellText.attributedText = attributedText
+        }
+
 }
 
 

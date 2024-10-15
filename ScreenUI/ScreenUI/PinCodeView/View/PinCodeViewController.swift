@@ -120,7 +120,7 @@ extension PinCodeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("Section: \(indexPath.section), Row: \(indexPath.item)")
+//        print("Section: \(indexPath.section), Row: \(indexPath.item)")
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(
@@ -136,6 +136,7 @@ extension PinCodeViewController: UICollectionViewDataSource {
                 withReuseIdentifier: TitleCell.identifier,
                 for: indexPath
             ) as! TitleCell
+            cell.configure(with: "Код быстрого доступа")
             
             return cell
         case 2:
@@ -143,12 +144,6 @@ extension PinCodeViewController: UICollectionViewDataSource {
                 withReuseIdentifier: SubTitleCell.identifier,
                 for: indexPath
             ) as! SubTitleCell
-            print(indexPath)
-            // Конфигурируем ячейку с делегатом
-//            cell.configure(withDelegate: self, text: "Пин-код введен")
-//            collectionView.reloadData()
-//            cell.delegate = self
-//            cell.cellText.text = "Пин-код введен"
             
             return cell
         case 3:
@@ -236,18 +231,44 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
     
     // MARK: - Обновление конкретной ячейки
     
-    func updateCell(with newSubTitle: String) {
-        let indexPath = IndexPath(row: 0, section: 2)
-        print(indexPath)
-
+    func updateSubTitleCell(with newSubTitle: String) {
+        let indexPath = IndexPath(item: 0, section: 2)
+        collectionView.reloadItems(at: [indexPath])
         if let cell = collectionView.cellForItem(at: indexPath) as? SubTitleCell {
             cell.updateLabel(with: newSubTitle)
-//            collectionView.reloadData()
         } else {
             print("Don't work")
-            // Если ячейка не видна, перезагрузим ее
         }
         
+    }
+    
+    func updatePins() {
+        states.pins = [PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive)]
+        let indexPath = IndexPath(row: 0, section: 3)
+        collectionView.reloadItems(at: [indexPath])
+//        if let cell = collectionView.cellForItem(at: indexPath) as? PinCell {
+//            let dataForCell: [UIImage] = states.pins.map {
+//                switch $0.state {
+//                case .active:
+//                    return UIImage(named: "PinFilled")!
+//                case .inactive:
+//                   return UIImage(named: "Pin")!
+//                }
+//            }
+//            cell.configureCell(dataCell: dataForCell)
+//        }
+        
+        
+    }
+    
+    func hideFogotButton() {
+        let indexPath = IndexPath(row: 0, section: 5)
+        collectionView.reloadItems(at: [indexPath])
+        if let cell = collectionView.cellForItem(at: indexPath) as? FogotButtonCell {
+            cell.hideButton()
+        } else {
+            print("Don't work")
+        }
     }
 }
 //extension PinCodeViewController: UICollectionViewDelegate {
@@ -275,13 +296,23 @@ extension PinCodeViewController: FogotButtonCellDelegate {
 
 extension PinCodeViewController: PinViewModelDelegate {
     func enteredPin() {
-        updateCell(with: "String")
+        updateSubTitleCell(with: "Повторите придуманный код")
+        updatePins()
+        hideFogotButton()
     }
     
     func fetchedPinStates(pins: [PinModel]) {
         states.pins = pins
         print(states.pins)
         self.collectionView.reloadData()
+    }
+    
+    func happyPin() {
+        // Переход на второй экран при нажатии на кнопку
+        let happyScreen = HappyScreenViewController()
+        
+        // Переход с использованием push
+        navigationController?.pushViewController(happyScreen, animated: true)
     }
 }
 

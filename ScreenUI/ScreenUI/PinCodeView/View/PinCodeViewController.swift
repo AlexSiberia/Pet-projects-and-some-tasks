@@ -6,10 +6,28 @@
 //
 
 import UIKit
+import Combine
 
 class PinCodeViewController: UIViewController {
     
-    var states = PinViewModel()
+    private var enterPinSubscriber: AnyCancellable?
+    private var confirmPinSubscriber: AnyCancellable?
+    private var pinStateSubscriber: AnyCancellable?
+    var cancellables = Set<AnyCancellable>()
+    
+    private var viewModel = PinViewModel()
+    
+//    init() {
+//        super.init()
+//    }
+//    convenience init() {
+//        self.init()
+////        self.viewModel = viewModel
+//    }
+//  
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     // MARK: - Subviews
     
@@ -33,6 +51,28 @@ class PinCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Настроим подписку уведомлений на изменение свойства isPinEntered в PinViewModel
+//        enterPinSubscriber = states.$isPinEntered.sink { [weak self] isPinEntered in
+//            if isPinEntered {
+//                self?.updateSubTitleCell(with: "Повторите придуманный код")
+//                self?.updatePins()
+//                self?.hideFogotButton()
+//            }
+//        }
+        
+        // Настроим подписку уведомлений на изменение свойства isPinConfirmed в PinViewModel
+//        confirmPinSubscriber = states.$isPinConfirmed.sink { [weak self] isPinConfirmed in
+//            if isPinConfirmed {
+//                self?.happyPin()
+//            }
+//        }
+        
+        // Настроим подписку уведомлений на состояние свойства pins в PinViewModel
+//        pinStateSubscriber = states.$pins.sink { [weak self] pins in
+//            self?.states.pins = pins
+//            print( self?.states.pins)
+//        }
         
         // Настроим navBar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -152,10 +192,10 @@ extension PinCodeViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as! PinCell
             // Передача данных из ViewModel для каждой ячейки второй секции
-            states.delegate = self
-            print(states.pins)
-            let dataForCell: [UIImage] = states.pins.map {
-                switch $0.state {
+            viewModel.delegate = self
+            print(viewModel.pins)
+            let dataForCell: [UIImage] = viewModel.pins.pinsState.map {
+                switch $0 {
                 case .active:
                     return UIImage(named: "PinFilled")!
                 case .inactive:
@@ -243,22 +283,23 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func updatePins() {
-        states.pins = [PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive)]
+        
+        viewModel.pinStateSubject
+            .assign(to: \.viewModel.pins.pinsState, on: self)
+//        (receiveValue: { value in
+//                print(value)
+//                self.viewModel.pins.pinsState = value
+//                let indexPath = IndexPath(row: 0, section: 3)
+//                self.collectionView.reloadItems(at: [indexPath])
+//            })
+//            })(to: \.viewModel.pins.pinsState, on: viewModel)
+            .store(in: &cancellables)
         let indexPath = IndexPath(row: 0, section: 3)
-        collectionView.reloadItems(at: [indexPath])
-//        if let cell = collectionView.cellForItem(at: indexPath) as? PinCell {
-//            let dataForCell: [UIImage] = states.pins.map {
-//                switch $0.state {
-//                case .active:
-//                    return UIImage(named: "PinFilled")!
-//                case .inactive:
-//                   return UIImage(named: "Pin")!
-//                }
-//            }
-//            cell.configureCell(dataCell: dataForCell)
-//        }
-        
-        
+                       self.collectionView.reloadItems(at: [indexPath])
+
+//        viewModel.pins.pinsState = [.inactive, .inactive, .inactive, .inactive]
+//        let indexPath = IndexPath(row: 0, section: 3)
+//        collectionView.reloadItems(at: [indexPath])
     }
     
     func hideFogotButton() {
@@ -271,9 +312,7 @@ extension PinCodeViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-//extension PinCodeViewController: UICollectionViewDelegate {
-//    
-//}
+
 // MARK: - CustomButtonCellDelegate
 
 extension PinCodeViewController: CustomButtonGoBackCellDelegate {
@@ -302,8 +341,8 @@ extension PinCodeViewController: PinViewModelDelegate {
     }
     
     func fetchedPinStates(pins: [PinModel]) {
-        states.pins = pins
-        print(states.pins)
+//        states.pins = pins
+        print(viewModel.pins)
         self.collectionView.reloadData()
     }
     
@@ -321,7 +360,8 @@ extension PinCodeViewController: PinViewModelDelegate {
 extension PinCodeViewController: KeyTapDelegate {
     func didUpdateData(_ identifier: String) {
         print(identifier)
-        states.udateDataFromVC(identifier)
+        viewModel.udateDataFromVC(identifier)
+        updatePins()
     }
 }
 

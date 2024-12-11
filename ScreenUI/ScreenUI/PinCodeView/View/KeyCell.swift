@@ -330,8 +330,7 @@ class KeyCell: UICollectionViewCell {
         
         let buttonValue = "\(sender.tag)"
         delegate?.didUpdateData(buttonValue)
-        //        print(String(describing: type(of: self)))
-        //        delegate?.didTapFogotButton(in: self)
+        
         
     }
 }

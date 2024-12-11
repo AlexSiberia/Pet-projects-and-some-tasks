@@ -12,6 +12,8 @@ enum PinState {
     case inactive
 }
 
-struct PinModel {
-    var state: PinState
+class PinModel {
+    @Published var pinsState: [PinState] = [.inactive, .inactive, .inactive, .inactive]
+    @Published var isPinEntered: Bool = false
+    @Published var isPinConfirmed: Bool = false
 }

@@ -4,83 +4,96 @@
 //
 //  Created by Alexander Kurbatov on 19.09.2024.
 //
+import Combine
 
-class PinViewModel {
+struct PinViewModel {
+//    @Published var isPinEntered: Bool = false
+//    @Published var isPinConfirmed: Bool = false
+//    @Published var pins: [PinModel] = [
+//        PinModel(state: .inactive),
+//        PinModel(state: .inactive),
+//        PinModel(state: .inactive),
+//        PinModel(state: .inactive)
+//    ]
+    var pins = PinModel()
+    
+    lazy var pinStateSubject: AnyPublisher<[PinState], Never> = {
+        return pins.$pinsState.eraseToAnyPublisher()
+    }()
+    
     
     weak var delegate: PinViewModelDelegate?
 
-    init(model: [PinModel]? = nil) {
-        if let inputModel = model {
-            pins = inputModel
-        }
-//        self.delegate?.fetchedPinStates(pins: pins)
-    }
+//    init(model: PinModel? = nil) {
+//        if let inputModel = model {
+//            self.pins = inputModel
+//        }
+//    }
+    
     var count: Int = 0
     var confirmedCount: Int = 0
     private var pinNumbers: [Int] = []
     private var confirmedPinNumbers: [Int] = []
     
-    var pins: [PinModel] = [PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive), PinModel(state: .inactive)]
-    
-    func udateDataFromVC(_ identifier: String) {
+    mutating func udateDataFromVC(_ identifier: String) {
         print("VM\(identifier)")
         
         switch identifier {
         case "0":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "1":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: )
         case "2":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "3":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "4":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "5":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "6":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "7":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "8":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "9":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         case "keyButtonDel":
-            pins[count].state = .active
+            pins.pinsState[count] = .active
             count += 1
             pinNumbers.append(Int(identifier) ?? 0)
-            delegate?.fetchedPinStates(pins: pins)
+//            delegate?.fetchedPinStates(pins: pins)
         default:
             break
         }
@@ -90,11 +103,13 @@ class PinViewModel {
             pinNumbers.removeAll()
             confirmedCount = count
             count = 0
-            delegate?.enteredPin()
+            pins.isPinEntered = true
+//            delegate?.enteredPin()
         } else if count == 4 && confirmedCount == 4 {
             if confirmedPinNumbers == pinNumbers {
                 // Переход на другой экран
-                delegate?.happyPin()
+                pins.isPinConfirmed = true
+//                delegate?.happyPin()
             } else {
                 // Показать пины красным цветом и перейти на экран ввода пинкода
             }

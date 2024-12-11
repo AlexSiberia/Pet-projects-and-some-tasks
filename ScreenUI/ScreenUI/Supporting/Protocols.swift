@@ -20,6 +20,3 @@ protocol FirstPinEnteredDelegate: AnyObject {
     func updateCell() 
 }
 
-//protocol SubTitleCellDelegate: AnyObject {
-//    func updateSubTitle(isComplete: Bool)
-//}

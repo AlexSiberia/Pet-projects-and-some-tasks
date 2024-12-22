@@ -33,11 +33,10 @@ extension ModuleContainer {
 extension ModuleContainer {
     func getTabBarViewController() -> UIViewController {
         let view = TabBarViewController()
-        let episodesVC = EpisodesAssembly.configure(dependencies)
-        let favouritesVC = FavouritesAssembly.configure(dependencies)
-        let characterDetailsVC = CharacterDetailsAssembly.configure(dependencies)
-        view.controllers = [episodesVC, favouritesVC, characterDetailsVC]
-        
+//        let episodesVC = EpisodesAssembly.configure(dependencies)
+//        let favouritesVC = FavouritesAssembly.configure(dependencies)
+//        let characterDetailsVC = CharacterDetailsAssembly.configure(dependencies)
+//        view.viewControllers = [episodesVC, favouritesVC, characterDetailsVC]
         
         return view
     }

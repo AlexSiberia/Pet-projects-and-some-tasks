@@ -13,12 +13,12 @@ protocol LaunchCoordinatorProtocol: Coordinator {
 
 final class LaunchCoordinator: LaunchCoordinatorProtocol {
     
-    var navigationController: UINavigationController
+    private let window: UIWindow
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .launch }
     var dependencies: IDependencies
-    required init(_ navigationController: UINavigationController, dependencies: IDependencies) {
-        self.navigationController = navigationController
+    required init(window: UIWindow, dependencies: IDependencies) {
+        self.window = window
         self.dependencies = dependencies
     }
     
@@ -28,16 +28,8 @@ final class LaunchCoordinator: LaunchCoordinatorProtocol {
     
     func showLaunchViewController() {
         let launchViewController = LaunchAssembly.configure(dependencies)
-//        if let launchViewController = launchViewController as? LaunchViewController {
-//            launchViewController.isShowOnboardingBefore = isShowOnboardingBefore
-//            launchViewController.didSendEventHandler = { [weak self] event in
-//                switch event {
-//                case .launchComplete:
-//                    self?.finish()
-//                }
-//            }
-//        }
-        navigationController.show(launchViewController, sender: self)
-       // navigationController.pushViewController(launchViewController, animated: true)
+
+        window.rootViewController = launchViewController
+        window.makeKeyAndVisible()
     }
 }

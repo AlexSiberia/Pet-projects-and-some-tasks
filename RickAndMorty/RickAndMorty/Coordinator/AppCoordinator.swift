@@ -13,15 +13,14 @@ protocol AppCoordinatorProtocol: Coordinator {
 
 final class AppCoordinator: AppCoordinatorProtocol {
     
-    var navigationController: UINavigationController
+    private let window: UIWindow
     var childCoordinators = [Coordinator]()
     var type: CoordinatorType { .app }
 //    private let userDefaultsRepository: IUserDefaultsRepository
     var dependencies: IDependencies
     
-    required init(_ navigationController: UINavigationController, dependencies: IDependencies) {
-        self.navigationController = navigationController
-        navigationController.setNavigationBarHidden(true, animated: true)
+    required init(window: UIWindow, dependencies: IDependencies) {
+        self.window = window
         self.dependencies = dependencies
 //        self.userDefaultsRepository = dependencies.userDefaultsRepository
     }
@@ -31,14 +30,25 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showLaunchFlow() {
-        let launchCoordinator = LaunchCoordinator(navigationController, dependencies: dependencies)
-//        launchCoordinator.finishDelegate = self
-        //        if userDefaultsRepository.isOnboardingCompleteBefore {
-        //            launchCoordinator.start()
-        //        } else {
-        //            launchCoordinator.startFirstLaunch()
-        //        }
+        let launchCoordinator = LaunchCoordinator(window: window, dependencies: dependencies)
+        // Запускаем координатор для LaunchScreen
+        launchCoordinator.start()
         
-        childCoordinators.append(launchCoordinator)
+        // По завершении анимации переключаемся на TabBar
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.showMainFlow()
+        }
+        
+    }
+    
+    func showMainFlow() {
+        // Удаляем координатор LaunchScreen
+        childCoordinators.removeAll()
+        
+        // Создаем координатор для TabBar
+        let tabBarCoordinator = TabBarCoordinator(window: window, dependencies: dependencies)
+        childCoordinators.append(tabBarCoordinator)
+        tabBarCoordinator.start()
+        
     }
 }

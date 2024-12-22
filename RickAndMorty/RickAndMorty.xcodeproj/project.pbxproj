@@ -32,6 +32,8 @@
 		393E3EC92D097B090053CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC82D097B090053CD4D /* Assets.xcassets */; };
 		3981FF332D0D4ABD00C36EA4 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981FF322D0D4AB000C36EA4 /* TabBarAssembly.swift */; };
 		3981FF352D0D4B5400C36EA4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981FF342D0D4B4800C36EA4 /* TabBarViewController.swift */; };
+		39B3A2182D150E3500D9E92A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A2172D150E2D00D9E92A /* Theme.swift */; };
+		39B3A21A2D15141700D9E92A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A2192D15141200D9E92A /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		393E3EF52D0BE8D70053CD4D /* LanchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanchCoordinator.swift; sourceTree = "<group>"; };
 		3981FF322D0D4AB000C36EA4 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		3981FF342D0D4B4800C36EA4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		39B3A2172D150E2D00D9E92A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		39B3A2192D15141200D9E92A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		393E3ED82D0984FA0053CD4D /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				39B3A2162D150E0B00D9E92A /* Extensions */,
 				393E3EDC2D09866E0053CD4D /* Coordinator */,
 				393E3EDB2D09866A0053CD4D /* Dependency */,
 				393E3EDA2D0986670053CD4D /* Model */,
@@ -196,6 +201,15 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		39B3A2162D150E0B00D9E92A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39B3A2192D15141200D9E92A /* Enums.swift */,
+				39B3A2172D150E2D00D9E92A /* Theme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,7 +240,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					393E3EBB2D097B070053CD4D = {
 						CreatedOnToolsVersion = 16.1;
@@ -280,6 +294,7 @@
 				392018EF2D0C1405005E7114 /* EpisodesViewController.swift in Sources */,
 				392018EB2D0C13FF005E7114 /* LaunchAssembly.swift in Sources */,
 				392018EC2D0C13FF005E7114 /* LaunchViewController.swift in Sources */,
+				39B3A2182D150E3500D9E92A /* Theme.swift in Sources */,
 				392018E52D0C13F7005E7114 /* Coordiinator.swift in Sources */,
 				392018E62D0C13F7005E7114 /* LanchCoordinator.swift in Sources */,
 				392018E72D0C13F7005E7114 /* TabBarCoordinator.swift in Sources */,
@@ -287,6 +302,7 @@
 				3981FF352D0D4B5400C36EA4 /* TabBarViewController.swift in Sources */,
 				392018E92D0C13F7005E7114 /* FavouritesCoordinator.swift in Sources */,
 				392018EA2D0C13F7005E7114 /* CharacterDetailCoordinator.swift in Sources */,
+				39B3A21A2D15141700D9E92A /* Enums.swift in Sources */,
 				392018E42D0C13EE005E7114 /* ModuleContainer.swift in Sources */,
 				392018E32D0C13E1005E7114 /* Dependencies.swift in Sources */,
 				392018E22D0C13CD005E7114 /* AppCoordinator.swift in Sources */,
@@ -309,6 +325,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RickAndMorty/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -336,6 +353,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RickAndMorty/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -404,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -461,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

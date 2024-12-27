@@ -8,12 +8,19 @@
 import UIKit
 
 protocol CharacterDetailsViewModelProtocol {
-    
+//    private let characterName: String
+    func getCharacterName() -> String
 }
 
 final class CharacterDetailsViewModel: CharacterDetailsViewModelProtocol {
-    init(_ dependencies: IDependencies) {
+    private let characterName: String
+    init(_ dependencies: IDependencies, characterName: String) {
+        self.characterName = characterName
 //        summaryService = dependencies.summaryService
 //        worldService = dependencies.worldService
     }
+    
+    func getCharacterName() -> String {
+            return characterName
+        }
 }

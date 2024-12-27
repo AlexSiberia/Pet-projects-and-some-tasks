@@ -26,7 +26,7 @@ final class LaunchCoordinator: LaunchCoordinatorProtocol {
         showLaunchViewController()
     }
     
-    func showLaunchViewController() {
+    private func showLaunchViewController() {
         let launchViewController = LaunchAssembly.configure(dependencies)
 
         window.rootViewController = launchViewController

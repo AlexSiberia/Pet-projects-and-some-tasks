@@ -13,7 +13,6 @@ final class TabBarCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .tabBar }
     var dependencies: IDependencies
-//    var navigationController: UINavigationController
     
     required init(window: UIWindow, dependencies: IDependencies) {
         self.window = window
@@ -24,12 +23,8 @@ final class TabBarCoordinator: Coordinator {
         showTabBarViewController()
     }
     
-    func showTabBarViewController() {
+    private func showTabBarViewController() {
         let tabBarViewController = TabBerAssembly.configure(dependencies) as! TabBarViewController
-        
-        // Устанавливаем TabBar как rootViewController
-        window.rootViewController = tabBarViewController
-        window.makeKeyAndVisible()
         
         let episodesCoordinator = EpisodesCoordinator(dependencies: dependencies)
         let favouritesCoordinator = FavouritesCoordinator(dependencies: dependencies)
@@ -42,9 +37,9 @@ final class TabBarCoordinator: Coordinator {
         favouritesCoordinator.start()
         
         tabBarViewController.viewControllers = [episodesCoordinator.navigationController, favouritesCoordinator.navigationController]
-        print(tabBarViewController.viewControllers)
-       
         
-       
+        // Устанавливаем TabBar как rootViewController
+        window.rootViewController = tabBarViewController
+        window.makeKeyAndVisible()
     }
 }

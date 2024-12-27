@@ -12,7 +12,7 @@ protocol IModuleContainer {
     func getTabBarViewController() -> UIViewController
     func getEpisodesViewController() -> UIViewController
     func getFavouritesViewController() -> UIViewController
-    func getCharacterDetailsViewController() -> UIViewController
+    func getCharacterDetailsViewController(characterName: String) -> UIViewController
 }
 
 final class ModuleContainer: IModuleContainer {
@@ -33,11 +33,6 @@ extension ModuleContainer {
 extension ModuleContainer {
     func getTabBarViewController() -> UIViewController {
         let view = TabBarViewController()
-//        let episodesVC = EpisodesAssembly.configure(dependencies)
-//        let favouritesVC = FavouritesAssembly.configure(dependencies)
-//        let characterDetailsVC = CharacterDetailsAssembly.configure(dependencies)
-//        view.viewControllers = [episodesVC, favouritesVC, characterDetailsVC]
-        
         return view
     }
 }
@@ -66,9 +61,9 @@ extension ModuleContainer {
 
 // MARK: - CharacterDetailsVC
 extension ModuleContainer {
-    func getCharacterDetailsViewController() -> UIViewController {
+    func getCharacterDetailsViewController(characterName: String) -> UIViewController {
         let view = CharacterDetailsViewController()
-        let viewModel = CharacterDetailsViewModel(dependencies)
+        let viewModel = CharacterDetailsViewModel(dependencies, characterName: characterName)
         view.viewModel = viewModel
         
         return view

@@ -29,7 +29,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         showLaunchFlow()
     }
     
-    func showLaunchFlow() {
+    private func showLaunchFlow() {
         let launchCoordinator = LaunchCoordinator(window: window, dependencies: dependencies)
         // Запускаем координатор для LaunchScreen
         launchCoordinator.start()
@@ -41,7 +41,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         
     }
     
-    func showMainFlow() {
+    private func showMainFlow() {
         // Удаляем координатор LaunchScreen
         childCoordinators.removeAll()
         

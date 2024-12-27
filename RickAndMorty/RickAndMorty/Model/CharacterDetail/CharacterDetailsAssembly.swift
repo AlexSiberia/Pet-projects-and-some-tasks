@@ -9,7 +9,7 @@ import UIKit
 
 final class CharacterDetailsAssembly {
     
-    static func configure(_ dependency: IDependencies) -> UIViewController {
-        return dependency.moduleContainer.getCharacterDetailsViewController()
+    static func configure(_ dependency: IDependencies, characterName: String) -> UIViewController {
+        return dependency.moduleContainer.getCharacterDetailsViewController(characterName: characterName)
     }
 }

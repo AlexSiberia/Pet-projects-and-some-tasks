@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 enum CoordinatorType {
     case app, launch, tabBar, episodesDetail, favorites, charactersDetail
@@ -13,7 +14,8 @@ enum CoordinatorType {
 
 protocol Coordinator: AnyObject {
   
-//    var navigationController: UINavigationController { get set }
+    var finishPublisher: PassthroughSubject<CoordinatorType, Never> { get } // Combine Publisher
+    var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
     var type: CoordinatorType { get }
     var dependencies: IDependencies { get }
@@ -23,7 +25,10 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func finish() {
+        print("Finish вызван")
+        print("1- \(childCoordinators)")
         childCoordinators.removeAll()
-    
+        print("2- \(childCoordinators)")
+        finishPublisher.send(type)
     }
 }

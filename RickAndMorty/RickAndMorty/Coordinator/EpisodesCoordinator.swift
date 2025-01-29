@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 final class EpisodesCoordinator: Coordinator {
+    var finishPublisher: PassthroughSubject<CoordinatorType, Never>
+    
     
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .episodesDetail }
@@ -19,6 +21,7 @@ final class EpisodesCoordinator: Coordinator {
     required init(dependencies: IDependencies) {
         self.dependencies = dependencies
         self.navigationController = UINavigationController()
+        self.finishPublisher = .init()
     }
     
     func start() {

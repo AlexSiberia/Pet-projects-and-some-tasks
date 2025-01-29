@@ -21,11 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func configureScene(_ windowScene: UIWindowScene) {
-        let window = UIWindow(windowScene: windowScene)
-        self.window = window
-        window.makeKeyAndVisible()
+        let navigationController = UINavigationController()
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         
-        coordinator = AppCoordinator(window: window, dependencies: dependencies)
+        coordinator = AppCoordinator(navigationController, dependencies: dependencies)
         coordinator?.start()
     }
     

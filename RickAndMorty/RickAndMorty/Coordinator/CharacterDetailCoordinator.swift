@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 final class CharacterDetailsCoordinator: Coordinator {
+    var finishPublisher: PassthroughSubject<CoordinatorType, Never>
+    
     
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .charactersDetail }
@@ -19,6 +22,7 @@ final class CharacterDetailsCoordinator: Coordinator {
         self.dependencies = dependencies
         self.navigationController = navigationController
         self.characterName = characterName
+        self.finishPublisher = .init()
     }
     
     func start() {
@@ -27,7 +31,6 @@ final class CharacterDetailsCoordinator: Coordinator {
     
     private func showCharacterDetails() {
         let characterDetailsViewController = CharacterDetailsAssembly.configure(dependencies, characterName: characterName)
-//        navigationController.pushViewController(characterDetailsViewController, animated: true)
         
         // Настраиваем модальный стиль
            characterDetailsViewController.modalPresentationStyle = .fullScreen // или .pageSheet

@@ -32,8 +32,13 @@
 		393E3EC92D097B090053CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 393E3EC82D097B090053CD4D /* Assets.xcassets */; };
 		3981FF332D0D4ABD00C36EA4 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981FF322D0D4AB000C36EA4 /* TabBarAssembly.swift */; };
 		3981FF352D0D4B5400C36EA4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981FF342D0D4B4800C36EA4 /* TabBarViewController.swift */; };
+		39A8A95B2D33DCE3009B8FA3 /* Roboto-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39A8A95A2D33DCE3009B8FA3 /* Roboto-VariableFont_wdth,wght.ttf */; };
+		39A8A95D2D33DD62009B8FA3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39A8A95C2D33DD62009B8FA3 /* Roboto-Regular.ttf */; };
+		39A8A95F2D33EA23009B8FA3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39A8A95E2D33EA23009B8FA3 /* Roboto-Medium.ttf */; };
 		39B3A2182D150E3500D9E92A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A2172D150E2D00D9E92A /* Theme.swift */; };
 		39B3A21A2D15141700D9E92A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A2192D15141200D9E92A /* Enums.swift */; };
+		39B3A21E2D1FE60B00D9E92A /* WellcomeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A21D2D1FE5FE00D9E92A /* WellcomeImageCell.swift */; };
+		39B3A2202D20296B00D9E92A /* SearchControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3A21F2D20294900D9E92A /* SearchControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +69,13 @@
 		393E3EF52D0BE8D70053CD4D /* LanchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanchCoordinator.swift; sourceTree = "<group>"; };
 		3981FF322D0D4AB000C36EA4 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		3981FF342D0D4B4800C36EA4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		39A8A95A2D33DCE3009B8FA3 /* Roboto-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		39A8A95C2D33DD62009B8FA3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		39A8A95E2D33EA23009B8FA3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		39B3A2172D150E2D00D9E92A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		39B3A2192D15141200D9E92A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		39B3A21D2D1FE5FE00D9E92A /* WellcomeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeImageCell.swift; sourceTree = "<group>"; };
+		39B3A21F2D20294900D9E92A /* SearchControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +120,7 @@
 		393E3ED92D0986630053CD4D /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				39A8A9592D33DC73009B8FA3 /* Fonts */,
 				393E3EBF2D097B070053CD4D /* AppDelegate.swift */,
 				393E3EC12D097B070053CD4D /* SceneDelegate.swift */,
 				393E3EC82D097B090053CD4D /* Assets.xcassets */,
@@ -168,6 +179,7 @@
 				393E3EE42D0988170053CD4D /* EpisodesAssembly.swift */,
 				393E3EE52D09882A0053CD4D /* EpisodesViewModel.swift */,
 				393E3EE62D0988390053CD4D /* EpisodesViewController.swift */,
+				39B3A21C2D1FE5EA00D9E92A /* Cells */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -201,6 +213,16 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		39A8A9592D33DC73009B8FA3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				39A8A95E2D33EA23009B8FA3 /* Roboto-Medium.ttf */,
+				39A8A95C2D33DD62009B8FA3 /* Roboto-Regular.ttf */,
+				39A8A95A2D33DCE3009B8FA3 /* Roboto-VariableFont_wdth,wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		39B3A2162D150E0B00D9E92A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +230,15 @@
 				39B3A2172D150E2D00D9E92A /* Theme.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		39B3A21C2D1FE5EA00D9E92A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				39B3A21F2D20294900D9E92A /* SearchControllerCell.swift */,
+				39B3A21D2D1FE5FE00D9E92A /* WellcomeImageCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +302,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A8A95F2D33EA23009B8FA3 /* Roboto-Medium.ttf in Resources */,
+				39A8A95D2D33DD62009B8FA3 /* Roboto-Regular.ttf in Resources */,
+				39A8A95B2D33DCE3009B8FA3 /* Roboto-VariableFont_wdth,wght.ttf in Resources */,
 				393E3EC92D097B090053CD4D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +319,7 @@
 				392018F32D0C140F005E7114 /* CharacterDetailsAssembly.swift in Sources */,
 				3981FF332D0D4ABD00C36EA4 /* TabBarAssembly.swift in Sources */,
 				392018F42D0C140F005E7114 /* CharacterDetailsViewModel.swift in Sources */,
+				39B3A2202D20296B00D9E92A /* SearchControllerCell.swift in Sources */,
 				392018F52D0C140F005E7114 /* CharacterDetailsViewController.swift in Sources */,
 				392018F02D0C140B005E7114 /* FavouritesAssembly.swift in Sources */,
 				392018F12D0C140B005E7114 /* FavouritesViewModel.swift in Sources */,
@@ -300,6 +335,7 @@
 				392018E72D0C13F7005E7114 /* TabBarCoordinator.swift in Sources */,
 				392018E82D0C13F7005E7114 /* EpisodesCoordinator.swift in Sources */,
 				3981FF352D0D4B5400C36EA4 /* TabBarViewController.swift in Sources */,
+				39B3A21E2D1FE60B00D9E92A /* WellcomeImageCell.swift in Sources */,
 				392018E92D0C13F7005E7114 /* FavouritesCoordinator.swift in Sources */,
 				392018EA2D0C13F7005E7114 /* CharacterDetailCoordinator.swift in Sources */,
 				39B3A21A2D15141700D9E92A /* Enums.swift in Sources */,

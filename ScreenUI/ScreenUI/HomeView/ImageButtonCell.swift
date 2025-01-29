@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Ячейка для изображения и кнопки вверху екрана
+// Ячейка для изображения и кнопки вверху экрана
 
 class ImageButtonCell: UICollectionViewCell {
     static var identifier: String {

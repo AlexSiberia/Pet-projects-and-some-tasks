@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol AppCoordinatorProtocol: Coordinator {
     func start()
@@ -13,14 +14,17 @@ protocol AppCoordinatorProtocol: Coordinator {
 
 final class AppCoordinator: AppCoordinatorProtocol {
     
-    private let window: UIWindow
+    var finishPublisher = PassthroughSubject<CoordinatorType, Never>() // Combine Publisher
+    var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
     var type: CoordinatorType { .app }
 //    private let userDefaultsRepository: IUserDefaultsRepository
     var dependencies: IDependencies
     
-    required init(window: UIWindow, dependencies: IDependencies) {
-        self.window = window
+    private var cancellables = Set<AnyCancellable>() // Combine для подписок
+    
+    required init(_ navigationController: UINavigationController, dependencies: IDependencies) {
+        self.navigationController = navigationController
         self.dependencies = dependencies
 //        self.userDefaultsRepository = dependencies.userDefaultsRepository
     }
@@ -30,15 +34,23 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     
     private func showLaunchFlow() {
-        let launchCoordinator = LaunchCoordinator(window: window, dependencies: dependencies)
+        let launchCoordinator = LaunchCoordinator(navigationController, dependencies: dependencies)
         // Запускаем координатор для LaunchScreen
         launchCoordinator.start()
         
-        // По завершении анимации переключаемся на TabBar
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.showMainFlow()
-        }
+        // Подписываемся на завершение координатора
+        launchCoordinator.finishPublisher
+            .sink { [weak self] coordinatorType in
+                switch coordinatorType {
+                case .launch:
+                    self?.showMainFlow()
+                default:
+                    break
+                }
+            }
+            .store(in: &cancellables)
         
+        childCoordinators.append(launchCoordinator)
     }
     
     private func showMainFlow() {
@@ -46,7 +58,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
         childCoordinators.removeAll()
         
         // Создаем координатор для TabBar
-        let tabBarCoordinator = TabBarCoordinator(window: window, dependencies: dependencies)
+        let tabBarCoordinator = TabBarCoordinator(navigationController, dependencies: dependencies)
         childCoordinators.append(tabBarCoordinator)
         tabBarCoordinator.start()
         

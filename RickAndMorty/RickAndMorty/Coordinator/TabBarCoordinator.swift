@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import Combine
 
 final class TabBarCoordinator: Coordinator {
     
-    private let window: UIWindow
+    var finishPublisher: PassthroughSubject<CoordinatorType, Never>
+    var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .tabBar }
     var dependencies: IDependencies
     
-    required init(window: UIWindow, dependencies: IDependencies) {
-        self.window = window
+    required init(_ navigationController: UINavigationController, dependencies: IDependencies) {
+        self.navigationController = navigationController
+//        self.navigationController.popToRootViewController(animated: true)
+
         self.dependencies = dependencies
+        self.finishPublisher = .init()
     }
     
     func start() {
@@ -25,6 +30,12 @@ final class TabBarCoordinator: Coordinator {
     
     private func showTabBarViewController() {
         let tabBarViewController = TabBerAssembly.configure(dependencies) as! TabBarViewController
+        
+        UIView.transition(with: navigationController.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.navigationController.setViewControllers([tabBarViewController], animated: false)
+        }, completion: nil)
+        
+        print(navigationController.viewControllers)
         
         let episodesCoordinator = EpisodesCoordinator(dependencies: dependencies)
         let favouritesCoordinator = FavouritesCoordinator(dependencies: dependencies)
@@ -39,7 +50,7 @@ final class TabBarCoordinator: Coordinator {
         tabBarViewController.viewControllers = [episodesCoordinator.navigationController, favouritesCoordinator.navigationController]
         
         // Устанавливаем TabBar как rootViewController
-        window.rootViewController = tabBarViewController
-        window.makeKeyAndVisible()
+//        window.rootViewController = tabBarViewController
+//        window.makeKeyAndVisible()
     }
 }

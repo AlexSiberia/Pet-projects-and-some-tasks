@@ -51,9 +51,21 @@ private extension TabBarViewController {
         
         // Инициализация tabItems
         tabItems = [
-            UITabBarItem(title: "Лента", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet.rectangle")),
-            UITabBarItem(title: "Избранное", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
+            UITabBarItem(title: nil, image: UIImage(named: ImageName.homeTabBarComponent), selectedImage: UIImage(named: ImageName.homeFilledTabBarComponent)),
+            UITabBarItem(title: nil, image: UIImage(named: ImageName.favouritesTabBarComponent), selectedImage: UIImage(named: ImageName.favouritesFilledTabBarComponent))
         ]
+        
+        // Убираем подписи
+        tabItems.forEach { item in
+            item.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: -15, right: 0)
+//            item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+        }
+        
+        tabBar.itemPositioning = .centered // Центрирует элементы
+        tabBar.itemSpacing = 65 // Расстояние между элементами
+        tabBar.itemWidth = 30 // Ширина элементов
+        
+        
         
         // Проверка: количество viewControllers и tabItems должно совпадать
         guard tabItems.count == viewControllers.count else {
@@ -63,6 +75,11 @@ private extension TabBarViewController {
         
         tabBar.backgroundColor = .blue
         tabBar.items = tabItems
+        
+        // Устанавливаем активным первый элемент
+        if let firstItem = tabBar.items?.first {
+            tabBar.selectedItem = firstItem
+        }
     }
     
     func selectViewController(at index: Int) {
@@ -97,7 +114,7 @@ private extension TabBarViewController {
         NSLayoutConstraint.activate([
             tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tabBar.heightAnchor.constraint(equalToConstant: 100),
+            tabBar.heightAnchor.constraint(equalToConstant: 61),
             tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }

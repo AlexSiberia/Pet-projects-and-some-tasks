@@ -10,4 +10,8 @@ import Foundation
 enum ImageName {
     static let launchScreenWelconeImageView = "LaunchScreenWelcome"
     static let loadingComponent = "LoadingComponent"
+    static let homeTabBarComponent = "Home"
+    static let homeFilledTabBarComponent = "HomeFilled"
+    static let favouritesTabBarComponent = "Favourites"
+    static let favouritesFilledTabBarComponent = "FavouгitesFilled"
 }

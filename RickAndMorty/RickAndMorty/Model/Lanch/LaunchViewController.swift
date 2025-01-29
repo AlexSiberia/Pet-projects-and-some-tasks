@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 final class LaunchViewController: UIViewController {
+    var onFinishPublisher = PassthroughSubject<Void, Never>()
     
     // MARK: - Subviews
     private lazy var launchScreenWelconeImageView: UIImageView = {
@@ -57,6 +59,19 @@ private extension LaunchViewController {
         rotation.duration = 2.0 // Длительность одного оборота (в секундах)
         rotation.repeatCount = Float.infinity // Бесконечное повторение
         loadingComponent.layer.add(rotation, forKey: "rotationAnimation")
+        
+        // По завершении анимации переключаемся на TabBar
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.finishAnimation()
+           
+        }
+    }
+    
+    // MARK: - Finish Animation
+    
+    func finishAnimation() {
+//        onFinish?()
+        onFinishPublisher.send(())
     }
     
     // MARK: Constraints
